@@ -1,0 +1,35 @@
+version: '3'
+services:
+    hk-nginx:
+        container_name: hk-nginx
+        image: nginx:1.13
+        restart: always
+        ports:
+          - 80:80
+          - 443:443
+        volumes:
+          - ./nginx/conf.d:/etc/nginx/conf.d
+        depends_on:
+          - web
+    db:
+        container_name: postgres
+        image: postgres:latest
+        volumes:
+            - sample_db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_USER=root
+            - POSTGRES_DB=classjour
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        ports:
+            - 5432:5432
+    web:
+      image: new_conf
+      ports: 
+          - 8080:8080
+      depends_on:
+          - db
+    
+
+volumes:
+    sample_db: {}

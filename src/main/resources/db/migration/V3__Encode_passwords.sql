@@ -1,0 +1,4 @@
+CREATE EXTENSION IF NOT EXISTS PGCRYPTO;
+
+UPDATE usr
+SET password = CRYPT(password, GEN_SALT('BF', 8));

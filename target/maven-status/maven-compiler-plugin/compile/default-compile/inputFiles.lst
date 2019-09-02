@@ -1,0 +1,17 @@
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\config\MailConfig.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\domain\Message.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\config\EncriptionConfig.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\Application.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\controller\RegistrationController.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\controller\UserController.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\config\MvcConfig.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\controller\ControllerUtils.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\services\UserService.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\repos\UserRepo.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\config\WebSecurityConfig.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\domain\dto\CaptchaResponseDto.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\domain\Role.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\controller\MainController.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\services\MailSender.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\domain\User.java
+D:\Users\user\IdeaProjects\WebappTest\src\main\java\com.instahipsta.webappTest\repos\MessageRepo.java
