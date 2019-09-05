@@ -69,7 +69,8 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive();
+        if (getActivationCode() != null) return false;
+        else return isActive();
     }
 
     @Override

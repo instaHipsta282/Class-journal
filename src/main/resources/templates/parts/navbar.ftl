@@ -3,7 +3,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">WebappTest</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -31,8 +32,9 @@
                 </li>
             </#if>
         </ul>
-
-        <div class="navbar-text mr-3">${name}</div>
-        <@l.logout />
+        <#if user??>
+            <div class="navbar-text mr-3">${name}</div>
+            <@l.logout />
+        </#if>
     </div>
 </nav>
