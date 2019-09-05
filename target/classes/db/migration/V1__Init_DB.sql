@@ -10,12 +10,16 @@ CREATE TABLE IF NOT EXISTS message (
 );
 
 CREATE TABLE IF NOT EXISTS user_role (
+    id INT8 NOT NULL,
     user_id INT8 NOT NULL,
-    roles VARCHAR(255)
+    roles VARCHAR(255),
+    PRIMARY KEY(id)
 );
 
+CREATE SEQUENCE usr_id_seq START 1 INCREMENT 1;
+
 CREATE TABLE IF NOT EXISTS usr (
-    id INT8 NOT NULL,
+    id INT8 NOT NULL DEFAULT NEXTVAL('usr_id_seq'),
     activation_code VARCHAR(255),
     active BOOLEAN NOT NULL,
     email VARCHAR(255),
@@ -34,13 +38,18 @@ DO $$
     END;
 $$;
 
+CREATE SEQUENCE role_id_seq START 1 INCREMENT 1;
+
 DO $$
     BEGIN
         IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'user_role_fk') THEN
             ALTER TABLE IF EXISTS user_role
+                ALTER COLUMN id
+                    SET DEFAULT NEXTVAL('role_id_seq'),
                 ADD CONSTRAINT user_role_fk
                     FOREIGN KEY (user_id) REFERENCES usr;
         END IF;
     END;
 $$;
+
 

@@ -8,13 +8,16 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.SocketUtils;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
-
 public class UserController {
     @Autowired
     private UserService userService;
@@ -49,7 +52,7 @@ public class UserController {
     @GetMapping("profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
-        model.addAttribute("password", user.getPassword());
+        model.addAttribute("email", user.getEmail());
 
         return "profile";
     }
@@ -57,6 +60,7 @@ public class UserController {
     @PostMapping("profile")
     public String updateProfile(
             @AuthenticationPrincipal User user,
+            Model model,
             @RequestParam String password,
             @RequestParam String email) {
 
