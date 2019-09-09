@@ -76,15 +76,14 @@ public class User implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() {
-        if (getActivationCode() != null) return false;
-        else return isActive();
-    }
+    public boolean isEnabled() { return isActive(); }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
+
+    public boolean isEmailActivated() { return !activationCode.isEmpty(); }
 
     public long getId() {
         return id;

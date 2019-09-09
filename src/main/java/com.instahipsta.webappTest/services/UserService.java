@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
 
-        if(user == null) {
+        if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
     public boolean addUser(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
-        if(userFromDb != null) {
+        if (userFromDb != null) {
             return false;
         }
 
@@ -60,10 +60,10 @@ public class UserService implements UserDetailsService {
     }
 
     private void sendMessage(User user) {
-        if(!StringUtils.isEmpty(user.getEmail())) {
+        if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Class Journal. Please, visit next link: http://%s/activate/%s",
+                            "For activate your account visit next link: http://%s/activate/%s",
                     user.getUsername(),
                     hostname,
                     user.getActivationCode()
@@ -75,7 +75,7 @@ public class UserService implements UserDetailsService {
     public boolean activateUser(String code) {
         User user = userRepo.findByActivationCode(code);
 
-        if(user == null) {
+        if (user == null) {
             return false;
         }
 
@@ -99,7 +99,7 @@ public class UserService implements UserDetailsService {
 
         user.getRoles().clear();
 
-        for(String key : form.keySet()) {
+        for (String key : form.keySet()) {
             if (roles.contains(key)) {
                 user.getRoles().add(Role.valueOf(key));
             }
@@ -108,25 +108,14 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
-    public void updateProfile(User user, String password, String email) {
-        String userEmail = user.getEmail();
+    public void updateProfile(User user, String email) {
 
-        boolean isEmailChanged = (email != null && !email.equals(userEmail)) ||
-                (userEmail != null && !userEmail.equals(email));
+        user.setEmail(email);
 
-        if(isEmailChanged) {
-            user.setEmail(email);
+        user.setActivationCode(UUID.randomUUID().toString());
 
-            if (!StringUtils.isEmpty(email)) {
-                user.setActivationCode(UUID.randomUUID().toString());
-            }
-        }
-
-        if(!StringUtils.isEmpty(password)) {
-            user.setPassword(passwordEncoder.encode(password));
-        }
         userRepo.save(user);
 
-        if(isEmailChanged) sendMessage(user);
+        sendMessage(user);
     }
 }
