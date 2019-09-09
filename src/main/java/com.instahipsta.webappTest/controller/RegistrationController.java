@@ -1,5 +1,6 @@
 package com.instahipsta.webappTest.controller;
 
+import com.instahipsta.webappTest.domain.Message;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.domain.dto.CaptchaResponseDto;
 import com.instahipsta.webappTest.services.UserService;
@@ -14,10 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class RegistrationController {
@@ -28,6 +33,9 @@ public class RegistrationController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @Value("${recaptcha.secret}")
     private String secret;
@@ -42,7 +50,8 @@ public class RegistrationController {
                           @RequestParam("password2") String passwordConfirm,
                           @Valid User user,
                           BindingResult bindingResult,
-                          Model model) {
+                          Model model,
+                          @RequestParam("file") MultipartFile file) throws IOException {
         String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
@@ -65,6 +74,7 @@ public class RegistrationController {
 
             return "registration";
         }
+        else saveFile(user, file);
 
         if(!userService.addUser(user)) {
             model.addAttribute("usernameError", "User exist!");
@@ -89,5 +99,21 @@ public class RegistrationController {
         return "login";
     }
 
+    private void saveFile(@Valid User user, @RequestParam("file") MultipartFile file) throws IOException {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            user.setPhoto(resultFilename);
+        }
+    }
 
 }
