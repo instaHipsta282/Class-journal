@@ -2,7 +2,6 @@ package com.instahipsta.webappTest.controller;
 
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.repos.UserRepo;
-import com.instahipsta.webappTest.services.MailSender;
 import com.instahipsta.webappTest.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.UUID;
-
 @Controller
-public class NewUserController {
+public class ProfileController {
     @Autowired
     private UserRepo userRepo;
 
@@ -26,9 +23,9 @@ public class NewUserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/profileNew")
+    @GetMapping("/profile")
     public String getProfileForm(Model model) {
-        return "profileNew";
+        return "profile";
     }
 
 
@@ -71,7 +68,7 @@ public class NewUserController {
             userRepo.save(user);
         }
 
-        return "profileNew";
+        return "profile";
     }
 
     @PostMapping("/changeEmail")
@@ -117,7 +114,7 @@ public class NewUserController {
             userService.updateProfile(user, newEmail);
         }
 
-        return "profileNew";
+        return "profile";
     }
 
     @PostMapping("/changePhone")
@@ -164,7 +161,7 @@ public class NewUserController {
             userRepo.save(user);
         }
 
-        return "profileNew";
+        return "profile";
     }
 
     @PostMapping("/changeName")
@@ -201,7 +198,7 @@ public class NewUserController {
 
             userRepo.save(user);
         }
-        return "profileNew";
+        return "profile";
     }
 
 }
