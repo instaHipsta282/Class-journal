@@ -16,11 +16,11 @@
                     </li>
 
                     <li class="list-group-item"><input type="text" value="${user.username}" name="username" placeholder="Enter user`s username"></li>
-                    <li class="list-group-item"><input type="text" value="${user.email}" name="email" placeholder="Enter user`s email"></li>
+                    <li class="list-group-item"><input type="text" value="<#if user.email??>${user.email}</#if>" name="email" placeholder="Enter user`s email"></li>
                     <li class="list-group-item"><input type="text" value="${user.phone}" name="phone" placeholder="Enter user`s phone number"></li>
                     <li class="list-group-item"><input type="text" value="${user.lastName}" name="lastName" placeholder="Enter user`s last name"></li>
                     <li class="list-group-item"><input type="text" value="${user.firstName}" name="firstName" placeholder="Enter user`s first name"></li>
-                    <li class="list-group-item"><input type="text" value="${user.secondName}" name="secondName" placeholder="Enter user`s second name"></li>
+                    <li class="list-group-item"><input type="text" value="<#if user.secondName??>${user.secondName}</#if>" name="secondName" placeholder="Enter user`s second name"></li>
 
                     <input type="hidden" value="${user.id}" name="userId">
                     <input type="hidden" value="${_csrf.token}" name="_csrf">

@@ -22,11 +22,11 @@
                 <td>${user.id}</td>
                 <td><#list user.roles as role>${role}<#sep>, </#list></td>
                 <td>${user.username}</td>
-                <td>${user.email}</td>
+                <td><#if user.email??>${user.email}</#if></td>
                 <td>${user.phone}</td>
                 <td>${user.lastName}</td>
                 <td>${user.firstName}</td>
-                <td>${user.secondName}</td>
+                <td><#if user.secondName??>${user.secondName}</#if></td>
                 <td><a href="/user/${user.id}">EDIT</a></td>
             </tr>
         </#list>
