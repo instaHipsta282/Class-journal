@@ -27,7 +27,7 @@
                 <td>${user.lastName}</td>
                 <td>${user.firstName}</td>
                 <td><#if user.secondName??>${user.secondName}</#if></td>
-                <td><a href="/user/${user.id}">EDIT</a></td>
+                <td><a href="/userList/${user.id}">EDIT</a></td>
             </tr>
         </#list>
         </tbody>
