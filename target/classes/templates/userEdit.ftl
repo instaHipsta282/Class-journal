@@ -1,8 +1,8 @@
 <#import "parts/common.ftl" as c>
 <#assign currentUser = Session.SPRING_SECURITY_CONTEXT.authentication.principal />
 <script>
-    $('#myModal').on('submit', function() {
-        $(#myModal).on('hide.bs.modal', function ( e ) {
+    $('#myModal').on('submit', function () {
+        $(#myModal).on('hide.bs.modal', function (e) {
             e.preventDefault();
         })
     });
@@ -76,7 +76,7 @@
                 <ul class="list-group">
 
                     <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
-                            data-target="#myModal" >
+                            data-target="#myModal">
                         Delete
                     </button>
                     <!-- Модальное окно -->
@@ -111,7 +111,8 @@
                                         <input type="hidden" value="${user.id}" name="userId">
                                         <input type="hidden" name="_csrf"
                                                value="${_csrf.token}"/>
-                                        <button class="btn btn-primary" type="submit" formaction="/userList/confirmPassword">Submit
+                                        <button class="btn btn-primary" type="submit"
+                                                formaction="/userList/confirmPassword">Submit
                                         </button>
                                     </form>
                                 </div>

@@ -1,8 +1,12 @@
 package com.instahipsta.webappTest.controller;
 
+import com.instahipsta.webappTest.domain.Course;
+import com.instahipsta.webappTest.domain.Schedule;
 import com.instahipsta.webappTest.domain.User;
+import com.instahipsta.webappTest.impl.CourseServiceImpl;
+import com.instahipsta.webappTest.impl.ScheduleServiceImpl;
+import com.instahipsta.webappTest.impl.UserServiceImpl;
 import com.instahipsta.webappTest.repos.UserRepo;
-import com.instahipsta.webappTest.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class ProfileController {
@@ -21,10 +28,26 @@ public class ProfileController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
+
+    @Autowired
+    private CourseServiceImpl courseServiceImpl;
+
+    @Autowired
+    private ScheduleServiceImpl scheduleService;
+
 
     @GetMapping("/profile")
-    public String getProfileForm(Model model) {
+    public String getProfileForm(@AuthenticationPrincipal User user,
+            Model model) {
+
+        Set<Course> courses = courseServiceImpl.findAvailableCourses();
+        courses.removeAll(courseServiceImpl.findActuallyCoursesByUserId(user.getId()));
+
+        model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(user.getId()));
+
+        model.addAttribute("courses", courses);
+
         return "profile";
     }
 
@@ -111,7 +134,7 @@ public class ProfileController {
 
             model.addAttribute("someEmailError", null);
 
-            userService.updateProfile(user, newEmail);
+            userServiceImpl.updateEmail(user, newEmail);
         }
 
         return "profile";
@@ -199,6 +222,51 @@ public class ProfileController {
             userRepo.save(user);
         }
         return "profile";
+    }
+
+    @PostMapping("/addCourse")
+    public String addCourse(@AuthenticationPrincipal User currentUser,
+                            @RequestParam Map<String, String> form,
+                            Model model) {
+
+        model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+
+        Set<Course> diff = courseServiceImpl.findAvailableCourses();
+        diff.removeAll(courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+
+        model.addAttribute("courses", diff);
+
+        for (Course course : diff) {
+            if (form.containsKey(course.getId().toString())) {
+                currentUser.getCourses().add(course);
+                scheduleFactory(currentUser, course);
+            }
+
+
+        }
+
+        userRepo.save(currentUser);
+
+        model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+
+        diff.removeAll(courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+
+        model.addAttribute("courses", diff);
+
+        return "profile";
+    }
+
+
+    private void scheduleFactory(User student, Course course) {
+        for (int i = 0; i < course.getDaysCount(); i++) {
+            Schedule schedule = new Schedule();
+
+            schedule.setDate(course.getStartDate().plusDays(i));
+            schedule.setStudent(student);
+            schedule.setCourse(course);
+
+            scheduleService.addSchedule(schedule);
+        }
     }
 
 }

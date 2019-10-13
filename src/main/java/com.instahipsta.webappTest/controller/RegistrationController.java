@@ -1,9 +1,8 @@
 package com.instahipsta.webappTest.controller;
 
-import com.instahipsta.webappTest.domain.Message;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.domain.dto.CaptchaResponseDto;
-import com.instahipsta.webappTest.services.UserService;
+import com.instahipsta.webappTest.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -29,7 +28,7 @@ public class RegistrationController {
     private static final String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -51,7 +50,7 @@ public class RegistrationController {
                           @Valid User user,
                           BindingResult bindingResult,
                           Model model,
-                          @RequestParam("file") MultipartFile file) throws IOException {
+                          @RequestParam(required = false, name = "file") MultipartFile file) throws IOException {
         String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
@@ -60,10 +59,10 @@ public class RegistrationController {
         }
 
         boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
-        if(isConfirmEmpty) {
+        if (isConfirmEmpty) {
             model.addAttribute("password2Error", "The password confirmation field cannot be empty");
         }
-        if(user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
+        if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
             model.addAttribute("passwordError", "Passwords are different!");
         }
 
@@ -73,10 +72,9 @@ public class RegistrationController {
             model.mergeAttributes(errors);
 
             return "registration";
-        }
-        else saveFile(user, file);
+        } else saveFile(user, file);
 
-        if(!userService.addUser(user)) {
+        if (!userServiceImpl.addUserToDb(user)) {
             model.addAttribute("usernameError", "User exist!");
             return "registration";
         }
@@ -85,13 +83,12 @@ public class RegistrationController {
 
     @GetMapping("/activate/{code}")
     public String activate(Model model, @PathVariable String code) {
-        boolean isActivated = userService.activateUser(code);
+        boolean isActivated = userServiceImpl.activateUser(code);
 
-        if(isActivated) {
+        if (isActivated) {
             model.addAttribute("messageType", "success");
             model.addAttribute("message", "User successfully activated");
-        }
-        else {
+        } else {
             model.addAttribute("messageType", "danger");
             model.addAttribute("message", "Activation code is not found");
         }

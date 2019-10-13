@@ -2,27 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8a87a53-fe46-49c6-95fb-477c1c3728cd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/CourseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ScheduleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Course.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/CourseServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/ScheduleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/CourseRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/ScheduleRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/CourseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/ScheduleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/course.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/courseList.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ControllerUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ControllerUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/RegistrationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/UserListNew.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/MailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/MailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_DB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_DB.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Add_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Add_admin.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/userEdit.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/userEdit.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/userList.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/userList.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ControllerUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ControllerUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ProfileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/RegistrationController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/UserListNew.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/UserRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/UserRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/MailSender.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/parts/navbar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parts/navbar.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V1__Init_DB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/migration/V1__Init_DB.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V2__Add_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/migration/V2__Add_admin.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/userEdit.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/userEdit.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/userList.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/userList.ftl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -46,8 +81,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="HTML File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -70,24 +105,25 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SendJTLtoInfluxDB" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources" />
-      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources\templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources\templates" />
       <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\java" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources" />
+      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -181,7 +217,21 @@
       <workItem from="1568022898444" duration="19135000" />
       <workItem from="1568108006705" duration="13809000" />
       <workItem from="1568188835237" duration="3029000" />
-      <workItem from="1568193197526" duration="6372000" />
+      <workItem from="1568193197526" duration="16745000" />
+      <workItem from="1568233132289" duration="21798000" />
+      <workItem from="1568716640563" duration="794000" />
+      <workItem from="1568892148600" duration="78000" />
+      <workItem from="1570092214901" duration="1726000" />
+      <workItem from="1570097488377" duration="12357000" />
+      <workItem from="1570176938608" duration="3790000" />
+      <workItem from="1570188438707" duration="5391000" />
+      <workItem from="1570195271550" duration="4397000" />
+      <workItem from="1570567975995" duration="6576000" />
+      <workItem from="1570722941217" duration="900000" />
+      <workItem from="1570726597075" duration="7827000" />
+      <workItem from="1570781864265" duration="13716000" />
+      <workItem from="1570898281331" duration="8365000" />
+      <workItem from="1570971103945" duration="599000" />
     </task>
     <servers />
   </component>
@@ -196,6 +246,20 @@
             <State>
               <option name="COLUMN_ORDER" />
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>

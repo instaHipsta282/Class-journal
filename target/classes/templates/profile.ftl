@@ -368,7 +368,55 @@
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <div class="panel panel-default">
-                                        <div>kek</div>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Begin date</th>
+                                                <th scope="col">End date</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#list userCourses as userCourse>
+                                                <tr>
+                                                    <td><a href="/courseList/${userCourse.title}">${userCourse.title}</a></td>
+                                                    <td>${userCourse.startDate}</td>
+                                                    <td>${userCourse.endDate}</td>
+                                                </tr>
+                                            </#list>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false">
+                                                Dropdown link
+                                            </a>
+                                            <form action="/addCourse" method="post">
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <#list courses as course>
+                                                        <a class="dropdown-item" href="#">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text mr-2">
+                                                                        <input class="mr-2" type="checkbox"
+                                                                               name="${course.id}">
+                                                                        <div>
+                                                                            ${course.title}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </#list>
+                                                    <input type="hidden" value="${_csrf.token}" name="_csrf">
+                                                    <button formaction="/addCourse" type="submit" class="btn btn-primary btn-lg btn-block">
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

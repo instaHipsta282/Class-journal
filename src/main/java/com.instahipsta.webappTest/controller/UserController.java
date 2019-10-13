@@ -1,10 +1,9 @@
 package com.instahipsta.webappTest.controller;
 
-import com.instahipsta.webappTest.config.EncriptionConfig;
 import com.instahipsta.webappTest.domain.Role;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.repos.UserRepo;
-import com.instahipsta.webappTest.services.UserService;
+import com.instahipsta.webappTest.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.spec.EncodedKeySpec;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -24,7 +22,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private UserRepo userRepo;
@@ -35,7 +33,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("users", userServiceImpl.findAll());
         return "userList";
     }
 
@@ -113,13 +111,14 @@ public class UserController {
 
         if (!isPasswordConfirm || password.isEmpty() || isCurrentAccount) {
             model.addAttribute("passwordError", "Bad credentials");
-            return  "userEdit";
-        }
-        else {
+            return "userEdit";
+        } else {
             userRepo.deleteById(user.getId());
             return "redirect:/userList";
         }
 
 
     }
+
+
 }

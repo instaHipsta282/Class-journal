@@ -1,4 +1,4 @@
-package com.instahipsta.webappTest.services;
+package com.instahipsta.webappTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
