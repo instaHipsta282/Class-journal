@@ -112,5 +112,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         sendMessageWithActivationCode(user);
     }
 
+    @Override
+    public boolean isEmailAlreadyUse(String email) {
+        return userRepo.isEmailAlreadyUse(email) > 0;
+    }
+
 
 }

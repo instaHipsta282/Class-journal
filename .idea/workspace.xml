@@ -2,53 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8a87a53-fe46-49c6-95fb-477c1c3728cd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/CourseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ScheduleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Course.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Schedule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/CourseServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/ScheduleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/CourseRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/ScheduleRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/CourseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/ScheduleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/course.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/courseList.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/PresenceStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Score.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V4__Add_status_table.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/colorsForTable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/courseGraph.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/courseDefaultImage.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ControllerUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ControllerUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/CourseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Schedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/CourseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/CourseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/ScheduleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/ScheduleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/CourseRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/CourseRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/ScheduleRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/ScheduleRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/repos/UserRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/MailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/MailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/ScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/ScheduleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_DB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_DB.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Add_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Add_admin.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/userEdit.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/userEdit.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/course.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/course.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/courseList.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/courseList.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/greeting.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/greeting.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/login.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/login.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/registration.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/registration.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ControllerUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ControllerUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/CourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/CourseController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/MainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ProfileController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/RegistrationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Schedule.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Schedule.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/CourseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/CourseServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/ScheduleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/ScheduleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/CourseRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/CourseRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/ScheduleRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/ScheduleRepo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/UserRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/repos/UserRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/MailSender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/CourseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/CourseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/ScheduleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/ScheduleService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V1__Init_DB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/migration/V1__Init_DB.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V2__Add_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/migration/V2__Add_admin.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/userEdit.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/userEdit.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/course.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/course.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/courseList.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/courseList.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/greeting.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/greeting.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/parts/login.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parts/login.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/parts/navbar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parts/navbar.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/registration.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/registration.ftl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,15 +95,23 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="HTML File" />
         <option value="Interface" />
+        <option value="CSS File" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -109,12 +132,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/uploads" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -122,6 +146,7 @@
       <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\java" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\user\IdeaProjects\WebappTest\uploads" />
       <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources" />
       <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources\templates" />
     </key>
@@ -231,7 +256,10 @@
       <workItem from="1570726597075" duration="7827000" />
       <workItem from="1570781864265" duration="13716000" />
       <workItem from="1570898281331" duration="8365000" />
-      <workItem from="1570971103945" duration="599000" />
+      <workItem from="1570971103945" duration="12832000" />
+      <workItem from="1571072301367" duration="6631000" />
+      <workItem from="1571139968585" duration="22481000" />
+      <workItem from="1571258337290" duration="45778000" />
     </task>
     <servers />
   </component>

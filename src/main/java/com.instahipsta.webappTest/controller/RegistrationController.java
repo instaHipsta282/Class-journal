@@ -17,21 +17,21 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class RegistrationController {
     private static final String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserServiceImpl userService;
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private ControllerUtils controllerUtils;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -47,14 +47,17 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(@RequestParam("g-recaptcha-response") String captchaResponse,
                           @RequestParam("password2") String passwordConfirm,
+                          @RequestParam(required = false) MultipartFile usersPhoto,
                           @Valid User user,
                           BindingResult bindingResult,
-                          Model model,
-                          @RequestParam(required = false, name = "file") MultipartFile file) throws IOException {
+                          Model model) {
         String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
-        if (!response.isSuccess()) {
+        System.out.println(usersPhoto.getName());
+
+
+        if (response != null && !response.isSuccess()) {
             model.addAttribute("captchaError", "Fill captcha");
         }
 
@@ -62,19 +65,31 @@ public class RegistrationController {
         if (isConfirmEmpty) {
             model.addAttribute("password2Error", "The password confirmation field cannot be empty");
         }
+
+        boolean isEmailAlreadyUse = userService.isEmailAlreadyUse(user.getEmail());
+
+        System.out.println(isEmailAlreadyUse);
+
+        if (isEmailAlreadyUse) {
+            model.addAttribute("emailError","Email address is already use");
+        }
         if (user.getPassword() != null && !user.getPassword().equals(passwordConfirm)) {
             model.addAttribute("passwordError", "Passwords are different!");
         }
 
-        if (isConfirmEmpty || bindingResult.hasErrors() || !response.isSuccess()) {
-            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+        if (isConfirmEmpty || bindingResult.hasErrors() || (response != null && !response.isSuccess()) || isEmailAlreadyUse) {
+            Map<String, String> errors = controllerUtils.getErrors(bindingResult);
 
             model.mergeAttributes(errors);
 
             return "registration";
-        } else saveFile(user, file);
+        }
+        if (!usersPhoto.isEmpty()) {
+            String resultFileName = controllerUtils.saveFile(usersPhoto);
+            user.setPhoto(resultFileName);
+        }
 
-        if (!userServiceImpl.addUserToDb(user)) {
+        if (!userService.addUserToDb(user)) {
             model.addAttribute("usernameError", "User exist!");
             return "registration";
         }
@@ -83,7 +98,7 @@ public class RegistrationController {
 
     @GetMapping("/activate/{code}")
     public String activate(Model model, @PathVariable String code) {
-        boolean isActivated = userServiceImpl.activateUser(code);
+        boolean isActivated = userService.activateUser(code);
 
         if (isActivated) {
             model.addAttribute("messageType", "success");
@@ -93,24 +108,7 @@ public class RegistrationController {
             model.addAttribute("message", "Activation code is not found");
         }
 
-        return "login";
-    }
-
-    private void saveFile(@Valid User user, @RequestParam("file") MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            user.setPhoto(resultFilename);
-        }
+        return "redirect:/login";
     }
 
 }

@@ -33,23 +33,23 @@ CREATE TABLE IF NOT EXISTS usr (
     PRIMARY KEY(id)
 );
 
-CREATE SEQUENCE course_id_seq START 1 INCREMENT 1;
-
-CREATE TABLE IF NOT EXISTS course (
-                                   id INT8 NOT NULL DEFAULT NEXTVAL('course_id_seq'),
-                                   title VARCHAR(255) NOT NULL,
-                                   start_date DATE,
-                                   end_date DATE,
-                                   days_count INT4,
-                                   students_count INT4 NOT NULL DEFAULT 0,
-                                   PRIMARY KEY(id)
-);
-
-CREATE TABLE IF NOT EXISTS course_usr (
-                                      user_id INT8 NOT NULL REFERENCES usr,
-                                      course_id INT8 NOT NULL REFERENCES course,
-                                      PRIMARY KEY(user_id, course_id)
-);
+-- CREATE SEQUENCE course_id_seq START 1 INCREMENT 1;
+--
+-- CREATE TABLE IF NOT EXISTS course (
+--                                    id INT8 NOT NULL DEFAULT NEXTVAL('course_id_seq'),
+--                                    title VARCHAR(255) NOT NULL,
+--                                    start_date DATE,
+--                                    end_date DATE,
+--                                    days_count INT4,
+--                                    students_count INT4 NOT NULL DEFAULT 0,
+--                                    PRIMARY KEY(id)
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS course_usr (
+--                                       user_id INT8 NOT NULL REFERENCES usr,
+--                                       course_id INT8 NOT NULL REFERENCES course,
+--                                       PRIMARY KEY(user_id, course_id)
+-- );
 
 
 DO $$

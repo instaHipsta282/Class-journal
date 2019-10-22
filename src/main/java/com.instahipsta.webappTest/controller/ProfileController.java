@@ -38,8 +38,10 @@ public class ProfileController {
 
 
     @GetMapping("/profile")
-    public String getProfileForm(@AuthenticationPrincipal User user,
-            Model model) {
+    public String getProfileForm(
+                                @AuthenticationPrincipal User user,
+                                Model model
+    ) {
 
         Set<Course> courses = courseServiceImpl.findAvailableCourses();
         courses.removeAll(courseServiceImpl.findActuallyCoursesByUserId(user.getId()));
@@ -59,7 +61,7 @@ public class ProfileController {
                                @RequestParam String oldPassword,
                                @RequestParam String newPassword,
                                @RequestParam String newPasswordRe
-    ) {
+                                ) {
 
         boolean isOldPasswordTrue = passwordEncoder.matches(oldPassword, user.getPassword());
         boolean isNewPasswordConfirm = newPassword.equals(newPasswordRe);
@@ -239,10 +241,11 @@ public class ProfileController {
         for (Course course : diff) {
             if (form.containsKey(course.getId().toString())) {
                 currentUser.getCourses().add(course);
+
                 scheduleFactory(currentUser, course);
+
+                course.setStudentsCount(course.getStudentsCount() + 1);
             }
-
-
         }
 
         userRepo.save(currentUser);
@@ -253,9 +256,8 @@ public class ProfileController {
 
         model.addAttribute("courses", diff);
 
-        return "profile";
+        return "redirect:/profile";
     }
-
 
     private void scheduleFactory(User student, Course course) {
         for (int i = 0; i < course.getDaysCount(); i++) {

@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">Profile</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/courseList">Course list</a>
+                </li>
             </#if>
             <#if isAdmin>
                 <li class="nav-item">
@@ -30,9 +33,28 @@
                 </li>
             </#if>
         </ul>
+
         <#if user??>
             <div class="navbar-text mr-3">${name}</div>
-            <@l.logout />
+            <form action="/logout" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <button class="btn btn-primary" type="submit">Sign out</button>
+            </form>
+        <#else>
+
+            <div class="mr-2">
+            <form action="/login" method="get">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <button class="btn btn-link" type="submit">Log in</button>
+            </form>
+            </div>
+            <div>
+            <form action="/registration" method="get">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <button class="btn btn-primary" type="submit">Sign up</button>
+            </form>
+            </div>
+
         </#if>
     </div>
 </nav>

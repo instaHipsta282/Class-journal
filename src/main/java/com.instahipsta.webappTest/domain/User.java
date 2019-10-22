@@ -23,11 +23,12 @@ public class User implements UserDetails {
     private String username;
     @NotBlank(message = "The password field cannot be empty")
     private String password;
-    private boolean active;
     @Email(message = "Email is not correct")
     @NotBlank(message = "The email field cannot be empty")
+    @Column(unique = true)
     private String email;
     private String activationCode;
+    private boolean active;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Message> messages;
@@ -74,16 +75,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive();
+        return activationCode == null;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
-    }
-
-    public boolean isEmailActivated() {
-        return !activationCode.isEmpty();
     }
 
     public Long getId() {
@@ -108,14 +105,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public Set<Role> getRoles() {
@@ -196,6 +185,11 @@ public class User implements UserDetails {
 
     public void setCourses(Set<Course> courses) {
         this.courses = courses;
+    }
+
+    public boolean isActive() { return active; }
+
+    public void setActive(boolean active) { this.active = active;
     }
 }
 

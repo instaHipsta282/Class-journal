@@ -16,7 +16,8 @@ public class Course implements Serializable{
     private static final long serialVersionUID = -7100745683715978956L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "courseSequence")
+    @SequenceGenerator( name = "courseSequence", sequenceName = "course_id_seq", allocationSize = 10)
     private Long id;
 
     private String title;
@@ -36,6 +37,12 @@ public class Course implements Serializable{
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     private Set<User> students = new HashSet<>();
+
+    @Column(columnDefinition = "VARCHAR(1000) DEFAULT 'Description for this course has not yet been added.'")
+    private String description;
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'courseDefaultImage.jpg'")
+    private String image;
 
     public Long getId() {
         return id;
@@ -93,6 +100,16 @@ public class Course implements Serializable{
         this.students = students;
     }
 
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public static long getSerialVersionUID() { return serialVersionUID; }
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,4 +122,5 @@ public class Course implements Serializable{
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

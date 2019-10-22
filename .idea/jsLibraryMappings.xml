@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{bootstrap, jquery-3.3.1, jquery-latest, jquery.dataTables, jquery.knob, screen.landingpages.pres45~screen.post~screen.post.amp~screen.post.series~screen.profile~screen.sequ~84968f7b.5ebe23ac.chunk, screen.post.d5b67b3f.chunk, screen.post~screen.post.amp~screen.post.series~screen.profile~screen.sequence.library~screen.sequenc~036c6b37.0409cc01.chunk, screen.post~screen.post.amp~screen.sequence.post.dbcc6ace.chunk, vue}" />
+  </component>
+</project>

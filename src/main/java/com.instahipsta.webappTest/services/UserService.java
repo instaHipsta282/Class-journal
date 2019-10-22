@@ -18,4 +18,6 @@ public interface UserService {
 
     void updateEmail(User user, String email);
 
+    boolean isEmailAlreadyUse(String email);
+
 }

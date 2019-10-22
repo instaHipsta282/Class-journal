@@ -51,9 +51,9 @@
                         <form method="post" action="/courseList/addNewCourse" <#-- link -->
                               enctype="multipart/form-data">
                             <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Course title:</label>
+                                <label for="courseTitle" class="col-sm-5 col-form-label">Course title:</label>
                                 <div class="col-sm-7">
-                                    <input type="text" name="courseTitle"
+                                    <input type="text" id="courseTitle" name="courseTitle"
                                            class="form-control ${(courseTitleError??)?string('is-invalid', '')}"
                                            placeholder="Enter course title"/>
                                     <#if courseTitleError??>
@@ -61,6 +61,13 @@
                                             ${courseTitleError}
                                         </div>
                                     </#if>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="courseDescription" class="col-sm-5 col-form-label">Course description:</label>
+                                <div class="col-sm-7">
+                                    <textarea class="form-control" id="courseDescription" name="courseDescription"
+                                              rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -75,6 +82,12 @@
                                 <div class="col-sm-7">
                                     <input class="form-control" type="date" value="2019-10-11" id="endDate"
                                            name="endDate">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" name="courseImage" id="courseImage">
+                                    <label class="custom-file-label" for="courseImage">Choose your image</label>
                                 </div>
                             </div>
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>

@@ -1,0 +1,17 @@
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 2px solid black;
+}
+td {
+    text-align: center;
+}
+td#absentColor {
+    background-color: red;
+}
+td#presenceColor { background-color: green }
+td#noneColor { background-color: gainsboro }
+
+p { font-size: large; }

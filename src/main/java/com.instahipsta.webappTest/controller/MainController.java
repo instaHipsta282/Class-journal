@@ -4,7 +4,6 @@ import com.instahipsta.webappTest.domain.Message;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,19 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 @Controller
 public class MainController {
     @Autowired
     private MessageRepo messageRepo;
 
-    @Value("${upload.path}")
-    private String uploadPath;
+    @Autowired
+    private ControllerUtils controllerUtils;
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -59,16 +55,19 @@ public class MainController {
             BindingResult bindingResult,
             Model model,
             @RequestParam("file") MultipartFile file
-    ) throws IOException {
+    ) {
         message.setAuthor(user);
 
         if (bindingResult.hasErrors()) {
-            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            Map<String, String> errorsMap = controllerUtils.getErrors(bindingResult);
 
             model.mergeAttributes(errorsMap);
             model.addAttribute("message", message);
         } else {
-            saveFile(message, file);
+            if (!file.isEmpty()) {
+                String resultFileName = controllerUtils.saveFile(file);
+                message.setFilename(resultFileName);
+            }
 
             model.addAttribute("message", null);
 
@@ -80,23 +79,6 @@ public class MainController {
         model.addAttribute("messages", messages);
 
         return "main";
-    }
-
-    private void saveFile(@Valid Message message, @RequestParam("file") MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            message.setFilename(resultFilename);
-        }
     }
 
     @GetMapping("/user-messages/{user}")
@@ -123,7 +105,7 @@ public class MainController {
             @RequestParam("text") String text,
             @RequestParam("tag") String tag,
             @RequestParam("file") MultipartFile file
-    ) throws IOException {
+    ) {
         if (message.getAuthor().equals(currentUser)) {
             if (!StringUtils.isEmpty(text)) {
                 message.setText(text);
@@ -133,11 +115,15 @@ public class MainController {
                 message.setTag(tag);
             }
 
-            saveFile(message, file);
+            if (!file.isEmpty()) {
+                String resultFileName = controllerUtils.saveFile(file);
+                message.setFilename(resultFileName);
+            }
 
             messageRepo.save(message);
         }
 
         return "redirect:/user-messages/" + user;
     }
+
 }

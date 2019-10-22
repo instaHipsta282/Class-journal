@@ -6,6 +6,7 @@ import com.instahipsta.webappTest.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -49,4 +50,19 @@ public class CourseServiceImpl implements CourseService {
         courseRepo.delete(course);
     }
 
+    @Override
+    public Boolean doesThisCourseExist(String courseTitle, LocalDate startDate, LocalDate endDate) {
+        int count = courseRepo.findCourseByTitleAndDates(courseTitle, startDate, endDate);
+        return count == 1;
+    }
+
+    @Override
+    public Date getStartDateById(Long courseId) {
+        return courseRepo.getStartDateById(courseId);
+    }
+
+    @Override
+    public Date getEndDateById(Long courseId) {
+        return courseRepo.getEndDateById(courseId);
+    }
 }

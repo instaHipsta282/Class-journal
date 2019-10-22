@@ -21,6 +21,11 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     User findByActivationCode(String code);
 
+    @Query(value = "SELECT count(*) " +
+            "FROM usr u " +
+            "WHERE u.email = ?1", nativeQuery = true)
+    Integer isEmailAlreadyUse(String email);
+
     @Override
     void deleteById(Long aLong);
 }

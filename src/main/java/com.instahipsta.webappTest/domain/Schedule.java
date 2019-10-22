@@ -21,9 +21,11 @@ public class Schedule {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    private int score;
+    @Enumerated(EnumType.STRING)
+    private PresenceStatus presenceStatus = PresenceStatus.NONE;
 
-    private boolean presence;
+    @Enumerated(EnumType.STRING)
+    private Score score = Score.NONE;
 
     public Long getId() { return id; }
 
@@ -41,13 +43,11 @@ public class Schedule {
 
     public void setCourse(Course course) { this.course = course; }
 
-    public int getScore() { return score; }
+    public PresenceStatus getPresenceStatus() { return presenceStatus; }
 
-    public void setScore(int score) { this.score = score; }
+    public void setPresenceStatus(PresenceStatus presenceStatus) { this.presenceStatus = presenceStatus; }
 
-    public boolean isPresence() { return presence; }
+    public Score getScore() { return score; }
 
-    public void setPresence(boolean presence) { this.presence = presence; }
-
-
+    public void setScore(Score score) { this.score = score; }
 }
