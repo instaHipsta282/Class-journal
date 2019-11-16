@@ -8,14 +8,15 @@ import java.time.LocalDate;
 public class Schedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "scheduleSequence")
+    @SequenceGenerator( name = "scheduleSequence", sequenceName = "schedule_id_seq")
     private Long id;
 
     private LocalDate date;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
-    private User student;
+    private User user;
 
     @ManyToOne(targetEntity = Course.class)
     @JoinColumn(name = "course_id")
@@ -35,9 +36,9 @@ public class Schedule {
 
     public void setDate(LocalDate date) { this.date = date; }
 
-    public User getStudent() { return student; }
+    public User getUser() { return user; }
 
-    public void setStudent(User student) { this.student = student; }
+    public void setUser(User user) { this.user = user; }
 
     public Course getCourse() { return course; }
 

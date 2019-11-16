@@ -2,6 +2,7 @@ package com.instahipsta.webappTest.controller;
 
 import com.instahipsta.webappTest.domain.Message;
 import com.instahipsta.webappTest.domain.User;
+import com.instahipsta.webappTest.impl.CourseServiceImpl;
 import com.instahipsta.webappTest.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,16 +20,27 @@ import javax.validation.Valid;
 import java.util.Map;
 import java.util.Set;
 
+
 @Controller
 public class MainController {
+
     @Autowired
     private MessageRepo messageRepo;
 
     @Autowired
     private ControllerUtils controllerUtils;
 
+    @Autowired
+    private CourseServiceImpl courseService;
+
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
+    public String greeting(Model model) {
+
+        model.addAttribute("passCourses", courseService.findPassCourses());
+        model.addAttribute("futureCourses", courseService.findFutureCourses());
+        model.addAttribute("presentCourses", courseService.findPresentCourses());
+        model.addAttribute("actuallyCoursesPercent", courseService.actuallyCoursesWithPercent());
+
         return "greeting";
     }
 
@@ -78,7 +90,7 @@ public class MainController {
 
         model.addAttribute("messages", messages);
 
-        return "main";
+        return "redirect:main";
     }
 
     @GetMapping("/user-messages/{user}")
@@ -111,18 +123,13 @@ public class MainController {
                 message.setText(text);
             }
 
-            if (!StringUtils.isEmpty(tag)) {
-                message.setTag(tag);
-            }
-
+            if (!StringUtils.isEmpty(tag)) { message.setTag(tag); }
             if (!file.isEmpty()) {
                 String resultFileName = controllerUtils.saveFile(file);
                 message.setFilename(resultFileName);
             }
-
             messageRepo.save(message);
         }
-
         return "redirect:/user-messages/" + user;
     }
 

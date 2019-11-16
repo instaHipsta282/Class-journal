@@ -1,6 +1,8 @@
 package com.instahipsta.webappTest.impl;
 
+import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.Schedule;
+import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.repos.ScheduleRepo;
 import com.instahipsta.webappTest.services.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Autowired
     private ScheduleRepo scheduleRepo;
+
+
 
     @Override
     public void addSchedule(Schedule schedule) {
@@ -33,6 +37,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public void deleteCourseScheduleForUser(long courseId, long userId) {
+        scheduleRepo.deleteByCourseIdAndUserId(courseId, userId);
+    }
+
+    @Override
     public Schedule getScheduleByDateUserAndCourseId(LocalDate date, Long userId, Long courseId) {
         return scheduleRepo.getScheduleByDateUserAndCourseId(date, userId, courseId);
     }
@@ -40,6 +49,20 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void save(Schedule schedule) {
         scheduleRepo.save(schedule);
+    }
+
+    @Override
+    public void deleteAllScheduleForCourse(long courseId) { scheduleRepo.deleteAllByCourseId(courseId); }
+
+    public void scheduleFactory(User student, Course course) {
+        for (int i = 0; i < course.getDaysCount(); i++) {
+            Schedule schedule = new Schedule();
+
+            schedule.setDate(course.getStartDate().plusDays(i));
+            schedule.setUser(student);
+            schedule.setCourse(course);
+            addSchedule(schedule);
+        }
     }
 
 }

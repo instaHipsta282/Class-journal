@@ -11,6 +11,8 @@ public interface ScheduleService {
 
     void addSchedule(Schedule schedule);
 
+    void deleteCourseScheduleForUser(long courseId, long userId);
+
     Schedule getScheduleByDateUserAndCourseId(LocalDate date, Long userId, Long courseId);
 
     Set<Schedule> getScheduleByUserAndCourseId(Long userId, Long courseId);
@@ -18,4 +20,6 @@ public interface ScheduleService {
     List<Date> getScheduleDaysByCourseId(Long courseId);
 
     void save(Schedule schedule);
+
+    void deleteAllScheduleForCourse(long courseId);
 }

@@ -16,11 +16,28 @@ public interface CourseRepo extends JpaRepository<Course, Long> {
     Set<Course> findActuallyCourses(Date end_date);
 
     @Query(value = "SELECT * " +
+            "FROM course c " +
+            "WHERE c.end_date < ?1", nativeQuery = true)
+    Set<Course> findPassCourses(Date currentDate);
+
+    @Query(value = "SELECT * " +
+            "FROM course c " +
+            "WHERE c.start_date > ?1", nativeQuery = true)
+    Set<Course> findFutureCourses(Date currentDate);
+
+    @Query(value = "SELECT * " +
+            "FROM course c " +
+            "WHERE c.start_date <= ?1 " +
+            "AND c.end_date > ?1", nativeQuery = true)
+    Set<Course> findPresentCourses(Date currentDate);
+
+    @Query(value = "SELECT * " +
                    "FROM course c " +
                    "WHERE c.id IN (" +
                    "SELECT course_id " +
                    "FROM course_usr " +
-                   "WHERE user_id = ?1" +
+                   "WHERE user_id = ?1 " +
+                   "AND students_count < students_limit" +
                    ")", nativeQuery = true)
     Set<Course> findActuallyCoursesByUserId(long userId);
 
@@ -43,4 +60,5 @@ public interface CourseRepo extends JpaRepository<Course, Long> {
             "WHERE c.id = ?1"
             , nativeQuery = true)
     Date getEndDateById(Long courseId);
+
 }

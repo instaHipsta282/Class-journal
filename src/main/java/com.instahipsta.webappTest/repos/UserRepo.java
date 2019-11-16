@@ -21,6 +21,12 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     User findByActivationCode(String code);
 
+    @Query(value = "SELECT * " +
+            "FROM usr u " +
+            "WHERE u.last_name = ?1 " +
+            "AND u.first_name = ?2", nativeQuery = true)
+    List<User> findByLastNameAndFirstName(String lastName, String firstName);
+
     @Query(value = "SELECT count(*) " +
             "FROM usr u " +
             "WHERE u.email = ?1", nativeQuery = true)
@@ -28,4 +34,5 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     @Override
     void deleteById(Long aLong);
+
 }

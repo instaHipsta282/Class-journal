@@ -1,10 +1,14 @@
 package com.instahipsta.webappTest.impl;
 
-import com.instahipsta.webappTest.MailSender;
+import com.instahipsta.webappTest.JsonConverter;
+import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.Role;
 import com.instahipsta.webappTest.domain.User;
+import com.instahipsta.webappTest.messaging.tasks.MessageWithActivationKey;
 import com.instahipsta.webappTest.repos.UserRepo;
 import com.instahipsta.webappTest.services.UserService;
+import com.sun.org.apache.xpath.internal.functions.WrongNumberArgsException;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,27 +20,33 @@ import org.springframework.util.StringUtils;
 
 import java.util.*;
 
+import static java.util.Arrays.asList;
+
 @Service
 public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private UserRepo userRepo;
 
     @Autowired
-    private MailSender mailSender;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private MessageWithActivationKey messageWithActivationKey;
 
     @Value("${my_hostname}")
     private String hostname;
 
     @Override
+    public Optional<User> findUserById(long userId) { return userRepo.findById(userId); }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
 
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
+        if (user == null) { throw new UsernameNotFoundException("User not found"); }
 
         return user;
     }
@@ -45,9 +55,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public boolean addUserToDb(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
-        if (userFromDb != null) {
-            return false;
-        }
+        if (userFromDb != null) { return false; }
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
@@ -63,6 +71,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public void sendMessageWithActivationCode(User user) {
+        String subject = "Activation code";
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
@@ -71,7 +80,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
                     hostname,
                     user.getActivationCode()
             );
-            mailSender.send(user.getEmail(), "Activation code", message);
+
+            messageWithActivationKey.setEmailTo(user.getEmail());
+            messageWithActivationKey.setSubject(subject);
+            messageWithActivationKey.setMessage(message);
+
+            String jsonMessage = JsonConverter.objectToJson(messageWithActivationKey);
+
+            rabbitTemplate.convertAndSend("mail", jsonMessage);
         }
     }
 
@@ -79,9 +95,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public boolean activateUser(String code) {
         User user = userRepo.findByActivationCode(code);
 
-        if (user == null) {
-            return false;
-        }
+        if (user == null) { return false; }
 
         user.setActivationCode(null);
 
@@ -101,10 +115,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    public List<User> findByLastNameAndFirstName(String lastName, String firstName) {
+        return userRepo.findByLastNameAndFirstName(lastName, firstName);
+    }
+
+    @Override
     public void updateEmail(User user, String email) {
 
         user.setEmail(email);
-
         user.setActivationCode(UUID.randomUUID().toString());
 
         userRepo.save(user);
@@ -117,5 +135,30 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return userRepo.isEmailAlreadyUse(email) > 0;
     }
 
+    public List<User> getUserListFromStringWithIds(String usersId) {
+        List<User> users = new ArrayList<>();
+        String[] ids = usersId.replaceAll(" ", "").split(",");
+        asList(ids).forEach(idStr -> {
+            long id = Long.parseLong(idStr);
+            users.add(findUserById(id)
+                    .orElseThrow(NullPointerException::new));
+        });
+        return users;
+    }
 
+
+    public List<User> getUserListFromStringWithName(String userName) throws WrongNumberArgsException {
+        String[] fullName = userName.split(" ");
+        if (fullName.length != 2) {
+            throw new WrongNumberArgsException("Needed 2 arguments, expected " + fullName.length);
+        }
+        else {
+            return findByLastNameAndFirstName(fullName[0], fullName[1]);
+        }
+    }
+
+    public void deleteUserFromCourse(Course course, User user) {
+        user.getCourses().remove(course);
+        userRepo.save(user);
+    }
 }

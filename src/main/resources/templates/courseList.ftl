@@ -12,6 +12,7 @@
             <th scope="col">End date</th>
             <th scope="col">Days count</th>
             <th scope="col">Students count</th>
+            <th scope="col">Students limit</th>
             <#if isAdmin>
                 <th scope="col"></th>
             </#if>
@@ -21,11 +22,16 @@
         <#list courses as course>
             <tr>
                 <td>${course.id}</td>
-                <td><a href="/courseList/${course.id}">${course.title}</a></td>
-                <td>${course.startDate}</td>
-                <td>${course.endDate}</td>
-                <td>${course.daysCount}</td>
-                <td>${course.studentsCount}</td>
+                <td>
+                    <a href="/courseList/${course.id}">
+                        ${course.getTitle()}
+                    </a>
+                </td>
+                <td>${course.getStartDate()}</td>
+                <td>${course.getEndDate()}</td>
+                <td>${course.getDaysCount()}</td>
+                <td>${course.getStudentsCount()}</td>
+                <td>${course.getStudentsLimit()}</td>
                 <#if isAdmin>
                     <td>
                         <form method="get" action="/courseList/deleteCourse" class="form-inline">
@@ -41,7 +47,8 @@
     <#if isAdmin>
         <p>
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse"
-                    data-target="#addNewCourse" aria-expanded="false" aria-controls="addNewCourse">Add new course
+                    data-target="#addNewCourse" aria-expanded="false" aria-controls="addNewCourse">
+                Add new course
             </button>
         </p>
         <div class="collapse <#if courseTitleError??>show</#if>" id="addNewCourse">
@@ -51,7 +58,9 @@
                         <form method="post" action="/courseList/addNewCourse" <#-- link -->
                               enctype="multipart/form-data">
                             <div class="form-group row">
-                                <label for="courseTitle" class="col-sm-5 col-form-label">Course title:</label>
+                                <label for="courseTitle" class="col-sm-5 col-form-label">
+                                    Course title:
+                                </label>
                                 <div class="col-sm-7">
                                     <input type="text" id="courseTitle" name="courseTitle"
                                            class="form-control ${(courseTitleError??)?string('is-invalid', '')}"
@@ -64,30 +73,47 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="courseDescription" class="col-sm-5 col-form-label">Course description:</label>
+                                <label for="studentsLimit" class="col-sm-5 col-form-label">
+                                    Students limit:
+                                </label>
                                 <div class="col-sm-7">
-                                    <textarea class="form-control" id="courseDescription" name="courseDescription"
-                                              rows="3"></textarea>
+                                    <input class="form-control" type="text"
+                                           id="studentsLimit" name="studentsLimit" placeholder="Default value is 5">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="startDate" class="col-sm-5 col-form-label">Start date:</label>
+                                <label for="courseDescription" class="col-sm-5 col-form-label">
+                                    Course description:
+                                </label>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="date" value="2019-10-11" id="startDate"
-                                           name="startDate">
+                                    <textarea class="form-control" id="courseDescription"
+                                              name="courseDescription" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="endDate" class="col-sm-5 col-form-label">End date:</label>
+                                <label for="startDate" class="col-sm-5 col-form-label">
+                                    Start date:
+                                </label>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="date" value="2019-10-11" id="endDate"
-                                           name="endDate">
+                                    <input class="form-control" type="date"
+                                           value="2019-10-11" id="startDate" name="startDate">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="endDate" class="col-sm-5 col-form-label">
+                                    End date:
+                                </label>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="date"
+                                           value="2019-10-11" id="endDate" name="endDate">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">
                                     <input type="file" name="courseImage" id="courseImage">
-                                    <label class="custom-file-label" for="courseImage">Choose your image</label>
+                                    <label class="custom-file-label" for="courseImage">
+                                        Choose your image
+                                    </label>
                                 </div>
                             </div>
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>

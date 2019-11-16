@@ -1,0 +1,13 @@
+a#coursesInProgress {
+    position: absolute;
+    top: 50%;
+    left: 49.5%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+a#futureCourses {
+    position: absolute;
+    top: 50%;
+    left: 92%;
+    transform: translateX(-50%) translateY(-50%);
+}

@@ -16,7 +16,8 @@ public class User implements UserDetails {
     private static final long serialVersionUID = -5146465642909731622L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
+    @SequenceGenerator( name = "userSequence", sequenceName = "user_id_seq")
     private Long id;
 
     @NotBlank(message = "The username field cannot be empty")
@@ -83,9 +84,7 @@ public class User implements UserDetails {
         return getRoles();
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
     public void setId(Long id) {
         this.id = id;

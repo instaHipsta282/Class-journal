@@ -1,5 +1,7 @@
 package com.instahipsta.webappTest.domain;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,7 +19,7 @@ public class Course implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "courseSequence")
-    @SequenceGenerator( name = "courseSequence", sequenceName = "course_id_seq", allocationSize = 10)
+    @SequenceGenerator( name = "courseSequence", sequenceName = "course_id_seq")
     private Long id;
 
     private String title;
@@ -27,6 +29,9 @@ public class Course implements Serializable{
     private LocalDate endDate;
 
     private int daysCount;
+
+    @Value("${DEFAULT_STUDENTS_LIMIT}")
+    private int studentsLimit = 5;
 
     private int studentsCount;
 
@@ -42,7 +47,7 @@ public class Course implements Serializable{
     private String description;
 
     @Column(columnDefinition = "VARCHAR(255) DEFAULT 'courseDefaultImage.jpg'")
-    private String image;
+    private String image = "courseDefaultImage.jpg";
 
     public Long getId() {
         return id;
@@ -109,6 +114,10 @@ public class Course implements Serializable{
     public String getImage() { return image; }
 
     public void setImage(String image) { this.image = image; }
+
+    public int getStudentsLimit() { return studentsLimit; }
+
+    public void setStudentsLimit(int studentsLimit) { this.studentsLimit = studentsLimit; }
 
     @Override
     public boolean equals(Object o) {

@@ -4,17 +4,26 @@ import com.instahipsta.webappTest.domain.Course;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 public interface CourseService {
 
+    Course findCourseById(long courseId);
+
     Set<Course> findAll();
 
-    Set<Course> findAvailableCourses();
+    Set<Course> findActuallyCourses();
+
+    Set<Course> findPassCourses();
+
+    Set<Course> findFutureCourses();
+
+    boolean save(Course course);
 
     Set<Course> findActuallyCoursesByUserId(long userId);
 
-    Course findCoursesById(long id);
+    Map<Course, String> actuallyCoursesWithPercent();
 
     void addCourse(Course course);
 
@@ -22,9 +31,10 @@ public interface CourseService {
 
     Boolean doesThisCourseExist(String courseTitle, LocalDate startDate, LocalDate endDate);
 
-
     Date getStartDateById(Long courseId);
 
     Date getEndDateById(Long courseId);
+
+    Set<Course> findPresentCourses();
 
 }

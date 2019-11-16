@@ -1,7 +1,6 @@
 package com.instahipsta.webappTest.controller;
 
 import com.instahipsta.webappTest.domain.Course;
-import com.instahipsta.webappTest.domain.Schedule;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
 import com.instahipsta.webappTest.impl.ScheduleServiceImpl;
@@ -43,11 +42,11 @@ public class ProfileController {
                                 Model model
     ) {
 
-        Set<Course> courses = courseServiceImpl.findAvailableCourses();
+        Set<Course> courses = courseServiceImpl.findActuallyCourses();
         courses.removeAll(courseServiceImpl.findActuallyCoursesByUserId(user.getId()));
 
+        model.addAttribute("currentUser", user);
         model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(user.getId()));
-
         model.addAttribute("courses", courses);
 
         return "profile";
@@ -216,7 +215,6 @@ public class ProfileController {
 
             model.addAttribute("someNameError", null);
 
-            System.out.println(firstName + " " + secondName + " " + lastName);
             if (!firstName.isEmpty()) user.setFirstName(firstName);
             if (!secondName.isEmpty()) user.setSecondName(secondName);
             if (!lastName.isEmpty()) user.setLastName(lastName);
@@ -233,7 +231,7 @@ public class ProfileController {
 
         model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
 
-        Set<Course> diff = courseServiceImpl.findAvailableCourses();
+        Set<Course> diff = courseServiceImpl.findActuallyCourses();
         diff.removeAll(courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
 
         model.addAttribute("courses", diff);
@@ -242,7 +240,7 @@ public class ProfileController {
             if (form.containsKey(course.getId().toString())) {
                 currentUser.getCourses().add(course);
 
-                scheduleFactory(currentUser, course);
+                scheduleService.scheduleFactory(currentUser, course);
 
                 course.setStudentsCount(course.getStudentsCount() + 1);
             }
@@ -258,19 +256,6 @@ public class ProfileController {
 
         return "redirect:/profile";
     }
-
-    private void scheduleFactory(User student, Course course) {
-        for (int i = 0; i < course.getDaysCount(); i++) {
-            Schedule schedule = new Schedule();
-
-            schedule.setDate(course.getStartDate().plusDays(i));
-            schedule.setStudent(student);
-            schedule.setCourse(course);
-
-            scheduleService.addSchedule(schedule);
-        }
-    }
-
 }
 
 

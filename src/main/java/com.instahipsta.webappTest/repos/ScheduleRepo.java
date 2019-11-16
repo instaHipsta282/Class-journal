@@ -32,4 +32,9 @@ public interface ScheduleRepo extends JpaRepository<Schedule, Long> {
             "AND date = ?1"
             , nativeQuery = true)
     Schedule getScheduleByDateUserAndCourseId(LocalDate date, Long userId, Long courseId);
+
+    void deleteAllByCourseId(Long courseId);
+
+    void deleteByCourseIdAndUserId(long courseId, long userId);
 }
+

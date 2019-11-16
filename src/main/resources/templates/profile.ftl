@@ -2,49 +2,50 @@
 <#include "parts/security.ftl">
 
 <@c.page>
-<#--    вся страница -->
+
     <div class="row">
-        <#--        карточка профиля-->
+
         <div class="col-md-4">
             <div class="card-deck">
                 <div class="card">
-                    <#if user.photo??>
-                        <img src="/img/${user.photo}" class="card-img-top">
+                    <#if currentUser.photo??>
+                        <img src="/img/${currentUser.photo}" class="card-img-top">
                     </#if>
                     <div class="m-2">
-                        <span>${user.lastName}</span>
-                        <span>${user.firstName}</span>
-                        <#if user.secondName??>${user.secondName}</#if>
+                        <span>${currentUser.lastName}</span>
+                        <span>${currentUser.firstName}</span>
+                        <#if currentUser.secondName??>${currentUser.secondName}</#if>
                     </div>
                     <div class="m-2">
-                        <span>Phone number: ${user.phone}</span>
+                        <span>Phone number: ${currentUser.phone}</span>
                     </div>
                     <div class="m-2">
-                        <#if user.email??>
-                            <span>Email: ${user.email}</span>
+                        <#if currentUser.email??>
+                            <span>Email: ${currentUser.email}</span>
                         </#if>
                     </div>
                 </div>
             </div>
         </div>
 
-        <#--        список из трех панелек-->
         <div class="col-md-6 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
-
-                            <a class="list-group-item list-group-item-action active" data-toggle="collapse"
-                               href="#collapseOne" aria-expanded="false"
-                               aria-controls="collapseOne">
+                            <a class="list-group-item list-group-item-action active"
+                               data-toggle="collapse" href="#collapseOne"
+                               aria-expanded="false" aria-controls="collapseOne">
                                 Edit your security information
                             </a>
                         </h4>
                     </div>
-                    <div class="collapse <#if somePasswordError?? || someEmailError?? || somePhoneError?? || someNameError??>show</#if>"
+                    <div class="collapse <#if somePasswordError??
+                                            || someEmailError??
+                                            || somePhoneError??
+                                            || someNameError??>
+                                            show</#if>"
                          id="collapseOne">
-
                         <div class="form-group mt-3">
                             <div class="form-group">
                                 <div class="panel panel-default">
@@ -52,25 +53,27 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading" role="tab">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse"
-                                                       href="#collapseTwo"
+                                                    <a data-toggle="collapse" href="#collapseTwo"
                                                        aria-expanded="false" aria-controls="collapseTwo">
                                                         Edit your password
                                                     </a>
                                                 </h4>
                                             </div>
-
-                                            <div class="collapse <#if somePasswordError??>show</#if>"
-                                                 id="collapseTwo">
+                                            <div class="collapse <#if somePasswordError??>show</#if>" id="collapseTwo">
                                                 <div class="form-group mt-3">
                                                     <form method="post" action="/changePassword"
                                                           enctype="multipart/form-data">
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Current
-                                                                password: </label>
+                                                            <label class="col-sm-5 col-form-label"
+                                                                   for="oldPassword">
+                                                                Current password:
+                                                            </label>
                                                             <div class="col-sm-7">
-                                                                <input type="password" name="oldPassword"
-                                                                       class="form-control ${(oldPasswordError??)?string('is-invalid', '')}"
+                                                                <input type="password"
+                                                                       name="oldPassword"
+                                                                       id="oldPassword"
+                                                                       class="form-control
+                                                                       ${(oldPasswordError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter your current password"/>
                                                                 <#if oldPasswordError??>
                                                                     <div class="invalid-feedback">
@@ -84,7 +87,8 @@
                                                                 password: </label>
                                                             <div class="col-sm-7">
                                                                 <input type="password" name="newPassword"
-                                                                       class="form-control ${(newPasswordError??)?string('is-invalid', '')}"
+                                                                       class="form-control
+                                                                       ${(newPasswordError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter new password"/>
                                                                 <#if newPasswordError??>
                                                                     <div class="invalid-feedback">
@@ -379,7 +383,9 @@
                                             <tbody>
                                             <#list userCourses as userCourse>
                                                 <tr>
-                                                    <td><a href="/courseList/${userCourse.title}">${userCourse.title}</a></td>
+                                                    <td>
+                                                        <a href="/courseList/${userCourse.title}">${userCourse.title}</a>
+                                                    </td>
                                                     <td>${userCourse.startDate}</td>
                                                     <td>${userCourse.endDate}</td>
                                                 </tr>
@@ -391,7 +397,7 @@
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                                aria-expanded="false">
-                                                Dropdown link
+                                                Add course
                                             </a>
                                             <form action="/addCourse" method="post">
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -411,7 +417,8 @@
                                                         </a>
                                                     </#list>
                                                     <input type="hidden" value="${_csrf.token}" name="_csrf">
-                                                    <button formaction="/addCourse" type="submit" class="btn btn-primary btn-lg btn-block">
+                                                    <button formaction="/addCourse" type="submit"
+                                                            class="btn btn-primary btn-lg btn-block">
                                                         Save
                                                     </button>
                                                 </div>

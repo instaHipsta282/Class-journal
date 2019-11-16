@@ -54,9 +54,6 @@ public class RegistrationController {
         String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
-        System.out.println(usersPhoto.getName());
-
-
         if (response != null && !response.isSuccess()) {
             model.addAttribute("captchaError", "Fill captcha");
         }
@@ -67,8 +64,6 @@ public class RegistrationController {
         }
 
         boolean isEmailAlreadyUse = userService.isEmailAlreadyUse(user.getEmail());
-
-        System.out.println(isEmailAlreadyUse);
 
         if (isEmailAlreadyUse) {
             model.addAttribute("emailError","Email address is already use");

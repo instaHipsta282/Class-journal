@@ -4,32 +4,37 @@
 <@c.page>
 
     <table class="table">
-        <thead>
+        <thead class="badge-primary badge-lg badge-block">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Roles</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone number</th>
             <th scope="col">Last name</th>
             <th scope="col">First name</th>
-            <th scope="col">Second name</th>
+            <th scope="col">Courses</th>
         </tr>
         </thead>
         <tbody>
         <#list users as user>
             <tr>
-                <td>${user.id}</td>
-                <td><#list user.roles as role>${role}<#sep>, </#list></td>
-                <td>${user.username}</td>
-                <td><#if user.email??>${user.email}</#if></td>
-                <td>${user.phone}</td>
+                <td>
+                    <a href="/userList/${user.id}">${user.id}</a>
+                </td>
                 <td>${user.lastName}</td>
                 <td>${user.firstName}</td>
-                <td><#if user.secondName??>${user.secondName}</#if></td>
-                <td><a href="/userList/${user.id}">EDIT</a></td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Course list
+                        </button>
+                        <div class="dropdown-menu">
+                            <#list user.getCourses() as course>
+                                <a class="dropdown-item">${course.getTitle()}</a>
+                            </#list>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </#list>
         </tbody>
     </table>
+
 </@c.page>
