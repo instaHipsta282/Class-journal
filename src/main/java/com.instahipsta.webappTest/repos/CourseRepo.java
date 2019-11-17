@@ -36,10 +36,9 @@ public interface CourseRepo extends JpaRepository<Course, Long> {
                    "WHERE c.id IN (" +
                    "SELECT course_id " +
                    "FROM course_usr " +
-                   "WHERE user_id = ?1 " +
-                   "AND students_count < students_limit" +
-                   ")", nativeQuery = true)
-    Set<Course> findActuallyCoursesByUserId(long userId);
+                   "WHERE user_id = ?1) " +
+                   "AND end_date > ?2", nativeQuery = true)
+    Set<Course> findActuallyCoursesByUserId(long userId, Date currentDate);
 
     @Query(value = "SELECT count(*) " +
             "FROM course c " +
@@ -60,5 +59,11 @@ public interface CourseRepo extends JpaRepository<Course, Long> {
             "WHERE c.id = ?1"
             , nativeQuery = true)
     Date getEndDateById(Long courseId);
+
+    @Query(value = "SELECT * " +
+            "FROM course c " +
+            "WHERE c.id = ?1"
+            , nativeQuery = true)
+    Course findCourseById(long courseId);
 
 }

@@ -118,7 +118,7 @@ public class CourseController {
         }
 
         if (!courseService.doesThisCourseExist(courseTitle, newStartDate, newEndDate)) {
-            courseService.addCourse(course);
+            courseService.save(course);
         } else model.addAttribute("courseTitleError", "This course already exists");
 
 

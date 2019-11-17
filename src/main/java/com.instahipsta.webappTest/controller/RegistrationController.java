@@ -84,7 +84,7 @@ public class RegistrationController {
             user.setPhoto(resultFileName);
         }
 
-        if (!userService.addUserToDb(user)) {
+        if (!userService.addUser(user)) {
             model.addAttribute("usernameError", "User exist!");
             return "registration";
         }

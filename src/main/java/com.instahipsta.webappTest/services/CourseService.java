@@ -1,6 +1,7 @@
 package com.instahipsta.webappTest.services;
 
 import com.instahipsta.webappTest.domain.Course;
+import com.instahipsta.webappTest.domain.User;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -25,8 +26,6 @@ public interface CourseService {
 
     Map<Course, String> actuallyCoursesWithPercent();
 
-    void addCourse(Course course);
-
     void deleteCourse(Course course);
 
     Boolean doesThisCourseExist(String courseTitle, LocalDate startDate, LocalDate endDate);
@@ -37,4 +36,5 @@ public interface CourseService {
 
     Set<Course> findPresentCourses();
 
+    Set<Course> findAvailableCoursesForUser(User user);
 }

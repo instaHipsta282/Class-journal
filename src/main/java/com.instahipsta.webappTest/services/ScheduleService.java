@@ -9,8 +9,6 @@ import java.util.Set;
 
 public interface ScheduleService {
 
-    void addSchedule(Schedule schedule);
-
     void deleteCourseScheduleForUser(long courseId, long userId);
 
     Schedule getScheduleByDateUserAndCourseId(LocalDate date, Long userId, Long courseId);

@@ -27,73 +27,47 @@ public class ProfileController {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserServiceImpl userService;
 
     @Autowired
-    private CourseServiceImpl courseServiceImpl;
+    private CourseServiceImpl courseService;
 
     @Autowired
     private ScheduleServiceImpl scheduleService;
 
 
     @GetMapping("/profile")
-    public String getProfileForm(
-                                @AuthenticationPrincipal User user,
-                                Model model
-    ) {
-
-        Set<Course> courses = courseServiceImpl.findActuallyCourses();
-        courses.removeAll(courseServiceImpl.findActuallyCoursesByUserId(user.getId()));
-
-        model.addAttribute("currentUser", user);
-        model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(user.getId()));
-        model.addAttribute("courses", courses);
+    public String getProfile(@AuthenticationPrincipal User user,
+                             Model model) {
+        loadDataForProfile(user, model);
 
         return "profile";
     }
 
-
     @PostMapping("/changePassword")
-    public String changePassword(
-                               @AuthenticationPrincipal User user,
-                               Model model,
-                               @RequestParam String oldPassword,
-                               @RequestParam String newPassword,
-                               @RequestParam String newPasswordRe
-                                ) {
-
-        boolean isOldPasswordTrue = passwordEncoder.matches(oldPassword, user.getPassword());
-        boolean isNewPasswordConfirm = newPassword.equals(newPasswordRe);
-
+    public String changePassword(@AuthenticationPrincipal User user,
+                                 @RequestParam String oldPassword,
+                                 @RequestParam String newPassword,
+                                 @RequestParam String newPasswordRe,
+                                 Model model) {
+        loadDataForProfile(user, model);
         //If user have some error in password edit form, form don`t collapse
         model.addAttribute("somePasswordError", "You have some password error");
 
-        if (oldPassword.isEmpty()) {
-            model.addAttribute("oldPasswordError", "The old password field cannot be empty");
+        System.out.println("Start changing: " + oldPassword + " " + newPassword);
 
-        }
-        if (!oldPassword.isEmpty() && !isOldPasswordTrue) {
-            model.addAttribute("oldPasswordError", "The password is failed");
-        }
-        if (newPassword.isEmpty()) {
-            model.addAttribute("newPasswordError", "The new password field cannot be empty");
-        }
-        if (newPasswordRe.isEmpty()) {
-            model.addAttribute("newPasswordReError", "The repeated new password field cannot be empty");
-        }
-        if (!newPasswordRe.isEmpty() && !newPassword.isEmpty() && !isNewPasswordConfirm) {
-            model.addAttribute("newPasswordError", "The new password and new repeated password fields are different");
-        }
+        boolean oldPasswordOk = checkPassword(oldPassword, user, model);
+        boolean newPasswordOk = checkNewPassword(newPassword, newPasswordRe, oldPassword, model);
 
-        if (!newPassword.isEmpty() && !newPasswordRe.isEmpty()
-                && !oldPassword.isEmpty() && isNewPasswordConfirm && isOldPasswordTrue) {
+        if (oldPasswordOk && newPasswordOk) {
             model.addAttribute("somePasswordError", null);
-            user.setPassword(passwordEncoder.encode(newPassword));
-            userRepo.save(user);
+            System.out.println("Password are correct: " + oldPassword + newPassword);
+            userService.changePassword(user, newPassword);
         }
 
         return "profile";
     }
+
 
     @PostMapping("/changeEmail")
     public String changeEmail(@AuthenticationPrincipal User user,
@@ -135,7 +109,7 @@ public class ProfileController {
 
             model.addAttribute("someEmailError", null);
 
-            userServiceImpl.updateEmail(user, newEmail);
+            userService.changeEmail(user, newEmail);
         }
 
         return "profile";
@@ -229,10 +203,10 @@ public class ProfileController {
                             @RequestParam Map<String, String> form,
                             Model model) {
 
-        model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+        model.addAttribute("userCourses", courseService.findActuallyCoursesByUserId(currentUser.getId()));
 
-        Set<Course> diff = courseServiceImpl.findActuallyCourses();
-        diff.removeAll(courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+        Set<Course> diff = courseService.findActuallyCourses();
+        diff.removeAll(courseService.findActuallyCoursesByUserId(currentUser.getId()));
 
         model.addAttribute("courses", diff);
 
@@ -248,14 +222,57 @@ public class ProfileController {
 
         userRepo.save(currentUser);
 
-        model.addAttribute("userCourses", courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+        model.addAttribute("userCourses", courseService.findActuallyCoursesByUserId(currentUser.getId()));
 
-        diff.removeAll(courseServiceImpl.findActuallyCoursesByUserId(currentUser.getId()));
+        diff.removeAll(courseService.findActuallyCoursesByUserId(currentUser.getId()));
 
         model.addAttribute("courses", diff);
 
         return "redirect:/profile";
     }
+
+    private void loadDataForProfile(User user, Model model) {
+        Set<Course> courses = courseService.findActuallyCourses();
+        courses.removeAll(courseService.findActuallyCoursesByUserId(user.getId()));
+
+        model.addAttribute("currentUser", user);
+        model.addAttribute("userCourses", courseService.findActuallyCoursesByUserId(user.getId()));
+        model.addAttribute("courses", courses);
+
+    }
+
+
+    private boolean checkPassword(String password, User user, Model model) {
+        if (password.isEmpty()) {
+            model.addAttribute("oldPasswordError", "The old password field cannot be empty");
+        }
+        else if (!passwordEncoder.matches(password, user.getPassword())) {
+            model.addAttribute("oldPasswordError", "The password is failed");
+        }
+        else return true;
+
+        return false;
+    }
+
+    private boolean checkNewPassword(String newPassword, String newPasswordRe, String password, Model model) {
+        if (newPassword.isEmpty()) {
+            model.addAttribute("newPasswordError", "The new password field cannot be empty");
+        }
+        else if (newPasswordRe.isEmpty()) {
+            model.addAttribute("newPasswordReError", "The repeated new password field cannot be empty");
+        }
+        else if (!newPassword.equals(newPasswordRe)) {
+            model.addAttribute("newPasswordError",
+                    "The new password and new repeated password fields are different");
+        }
+        else if (newPassword.equals(password)) {
+                model.addAttribute("newPasswordError", "Your new password cannot be equals with old password");
+        }
+        else return true;
+
+        return false;
+    }
+
 }
 
 

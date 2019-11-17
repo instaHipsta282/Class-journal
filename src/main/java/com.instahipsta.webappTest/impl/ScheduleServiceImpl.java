@@ -19,13 +19,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private ScheduleRepo scheduleRepo;
 
-
-
-    @Override
-    public void addSchedule(Schedule schedule) {
-        scheduleRepo.save(schedule);
-    }
-
     @Override
     public Set<Schedule> getScheduleByUserAndCourseId(Long userId, Long courseId) {
         return scheduleRepo.getScheduleByUserAndCourseId(userId, courseId);
@@ -61,7 +54,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             schedule.setDate(course.getStartDate().plusDays(i));
             schedule.setUser(student);
             schedule.setCourse(course);
-            addSchedule(schedule);
+            save(schedule);
         }
     }
 

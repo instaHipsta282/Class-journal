@@ -39,23 +39,22 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Value("${my_hostname}")
     private String hostname;
 
+    //testing
     @Override
-    public Optional<User> findUserById(long userId) { return userRepo.findById(userId); }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username);
-
-        if (user == null) { throw new UsernameNotFoundException("User not found"); }
-
-        return user;
+    public User findUserById(long userId) {
+        if (userRepo.findById(userId).isPresent()) {
+            return userRepo.findById(userId).get();
+        }
+        else return null;
     }
 
+
+    //testing
     @Override
-    public boolean addUserToDb(User user) {
+    public boolean addUser(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
-        if (userFromDb != null) { return false; }
+        if (userFromDb != null) return false;
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
@@ -69,8 +68,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return true;
     }
 
+    //testing
     @Override
-    public void sendMessageWithActivationCode(User user) {
+    public String sendMessageWithActivationCode(User user) {
         String subject = "Activation code";
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
@@ -80,7 +80,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
                     hostname,
                     user.getActivationCode()
             );
-
             messageWithActivationKey.setEmailTo(user.getEmail());
             messageWithActivationKey.setSubject(subject);
             messageWithActivationKey.setMessage(message);
@@ -88,40 +87,43 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             String jsonMessage = JsonConverter.objectToJson(messageWithActivationKey);
 
             rabbitTemplate.convertAndSend("mail", jsonMessage);
+
+            return jsonMessage;
         }
+        else return null;
     }
 
+    //testing
     @Override
     public boolean activateUser(String code) {
         User user = userRepo.findByActivationCode(code);
-
-        if (user == null) { return false; }
-
+        if (user == null) return false;
         user.setActivationCode(null);
-
         userRepo.save(user);
-
         return true;
     }
 
+    //testing
     @Override
     public List<User> findAll() {
         return userRepo.findAll();
     }
 
+    //testing
     @Override
     public List<User> findUsersByCourseId(long id) {
         return userRepo.findUsersByCourseId(id);
     }
 
+    //testing
     @Override
     public List<User> findByLastNameAndFirstName(String lastName, String firstName) {
         return userRepo.findByLastNameAndFirstName(lastName, firstName);
     }
 
+    //testing
     @Override
-    public void updateEmail(User user, String email) {
-
+    public void changeEmail(User user, String email) {
         user.setEmail(email);
         user.setActivationCode(UUID.randomUUID().toString());
 
@@ -130,35 +132,82 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         sendMessageWithActivationCode(user);
     }
 
+    //testing
     @Override
     public boolean isEmailAlreadyUse(String email) {
         return userRepo.isEmailAlreadyUse(email) > 0;
     }
 
+    //testing
     public List<User> getUserListFromStringWithIds(String usersId) {
         List<User> users = new ArrayList<>();
         String[] ids = usersId.replaceAll(" ", "").split(",");
         asList(ids).forEach(idStr -> {
             long id = Long.parseLong(idStr);
-            users.add(findUserById(id)
-                    .orElseThrow(NullPointerException::new));
+            users.add(findUserById(id));
         });
         return users;
     }
 
-
-    public List<User> getUserListFromStringWithName(String userName) throws WrongNumberArgsException {
+     public List<User> getUserListFromStringWithName(String userName) throws WrongNumberArgsException {
         String[] fullName = userName.split(" ");
         if (fullName.length != 2) {
             throw new WrongNumberArgsException("Needed 2 arguments, expected " + fullName.length);
-        }
-        else {
+        } else {
             return findByLastNameAndFirstName(fullName[0], fullName[1]);
         }
     }
 
+    //testing
     public void deleteUserFromCourse(Course course, User user) {
         user.getCourses().remove(course);
         userRepo.save(user);
+    }
+
+    //testing
+    @Override
+    public User save(User user) {
+        return userRepo.save(user);
+    }
+
+    //testing
+    @Override
+    public void changePassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepo.save(user);
+    }
+
+    //testing
+    @Override
+    public void changePhone(User user, String phone) {
+        user.setPhone(phone);
+        userRepo.save(user);
+    }
+
+    //testing
+    @Override
+    public void changeFirstName(User user, String firstName) {
+        user.setFirstName(firstName);
+        userRepo.save(user);
+    }
+
+    //testing
+    @Override
+    public void changeSecondName(User user, String secondName) {
+        user.setSecondName(secondName);
+        userRepo.save(user);
+    }
+
+    //testing
+    @Override
+    public void changeLastName(User user, String lastName) {
+        user.setLastName(lastName);
+        userRepo.save(user);
+    }
+
+    //testing
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepo.findByUsername(username);
     }
 }
