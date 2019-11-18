@@ -5,6 +5,7 @@ import com.instahipsta.webappTest.domain.User;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -37,4 +38,16 @@ public interface CourseService {
     Set<Course> findPresentCourses();
 
     Set<Course> findAvailableCoursesForUser(User user);
+
+    List<LocalDate> getScheduleDays(LocalDate startDate, LocalDate endDate);
+
+    //testing
+    List<User> getNewUsersForCourse(Course course);
+
+    Course addNewCourse(String courseTitle,
+                        String courseDescription,
+                        LocalDate startDate,
+                        LocalDate endDate,
+                        Integer studentsLimit,
+                        String  image);
 }

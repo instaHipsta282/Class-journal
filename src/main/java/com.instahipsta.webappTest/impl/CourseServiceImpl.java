@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.naming.LimitExceededException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -21,9 +23,21 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private ScheduleServiceImpl scheduleService;
 
+    @Autowired
+    private UserServiceImpl userService;
+
+    @Autowired
+    private UtilServiceImpl utilService;
+
     //testing
     @Override
-    public boolean save(Course course) { return courseRepo.save(course) != null; }
+    public boolean save(Course course) {
+        if (!doesThisCourseExist(course.getTitle(), course.getStartDate(), course.getEndDate())) {
+            courseRepo.save(course);
+            return true;
+        }
+        return false;
+    }
 
     //testing
     @Override
@@ -143,5 +157,49 @@ public class CourseServiceImpl implements CourseService {
         availableCourses.removeAll(findActuallyCoursesByUserId(user.getId()));
 
         return availableCourses;
+    }
+
+    //testing
+    @Override
+    public List<LocalDate> getScheduleDays(LocalDate startDate, LocalDate endDate) {
+        List<LocalDate> scheduleDays = new ArrayList<>();
+        while (startDate.isBefore(endDate.plusDays(1))) {
+            scheduleDays.add(startDate);
+            startDate = startDate.plusDays(1);
+        }
+        return scheduleDays;
+    }
+
+    //testing
+    @Override
+    public List<User> getNewUsersForCourse(Course course) {
+        List<User> usersForCourse = userService
+                .findAll()
+                .stream()
+                .filter(u -> !course.getStudents().contains(u))
+                .collect(Collectors.toList());
+        return usersForCourse;
+    }
+
+    //testing
+    @Override
+    public Course addNewCourse(String courseTitle,
+                               String courseDescription,
+                               LocalDate startDate,
+                               LocalDate endDate,
+                               Integer studentsLimit,
+                               String image) {
+
+        Course course = new Course();
+        course.setTitle(courseTitle);
+        course.setStartDate(startDate);
+        course.setEndDate(endDate);
+        course.setStudentsCount(0);
+        course.setDaysCount((int)ChronoUnit.DAYS.between(startDate, endDate) + 1);
+        if (studentsLimit != null) course.setStudentsLimit(studentsLimit);
+        if (courseDescription != null) course.setDescription(courseDescription);
+        if (image != null) course.setImage(image);
+
+        return course;
     }
 }

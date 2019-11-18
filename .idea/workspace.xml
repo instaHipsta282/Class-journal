@@ -2,28 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8a87a53-fe46-49c6-95fb-477c1c3728cd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/FileServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/FileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/Service/FileServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/create-courses-before-schedule-service.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/create-user-before-schedule-service.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-uploads/rick-y-morty.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UtilServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/UtilService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V5__Add_ordinary_user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/controller/CourseControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ControllerUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/ControllerUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/ScheduleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/ScheduleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/ScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/ScheduleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/Service/ScheduleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/Service/ScheduleServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ControllerUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/ControllerUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/domain/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/CourseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/CourseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/ProfileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/controller/ProfileControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/CourseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/CourseServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/ScheduleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/ScheduleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/create-course-before.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/create-course-before.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/create-courses-before-schedule-service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/create-courses-before-schedule-service.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/create-user-before-schedule-service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/create-user-before-schedule-service.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/create-user-before.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/create-user-before.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/delete-user-after.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/delete-user-after.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/CourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/CourseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/controller/RegistrationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/ScheduleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/ScheduleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/ScheduleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/ScheduleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/CourseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/CourseServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/CourseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/CourseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/ProfileControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/CourseServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/CourseServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/FileServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/FileServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/ScheduleServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/ScheduleServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/UserServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/create-course-before.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/create-course-before.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/create-courses-before-schedule-service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/create-courses-before-schedule-service.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/create-user-before-schedule-service.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/create-user-before-schedule-service.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/create-user-before.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/create-user-before.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/delete-user-after.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/delete-user-after.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +51,7 @@
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="219" />
+    <option name="myElementSize" value="197" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -65,8 +81,8 @@
         <option value="Enum" />
         <option value="JavaScript File" />
         <option value="CSS File" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -87,9 +103,13 @@
     </option>
   </component>
   <component name="ProjectId" id="1Pe9N5P5HX2mFAUwE0csBjBplz4" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -107,10 +127,8 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\test\resources" />
-      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources\templates" />
-      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\java" />
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.instahipsta.webappTest.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Users\user\IdeaProjects\WebappTest\test-uploads" />
@@ -118,6 +136,11 @@
       <recent name="D:\Users\user\IdeaProjects\WebappTest\uploads" />
       <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources" />
       <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\test\resources" />
+      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\resources\templates" />
+      <recent name="D:\Users\user\IdeaProjects\WebappTest\src\main\java" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -132,99 +155,88 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.FileServiceTest">
-    <configuration name="FileServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CourseControllerTest">
+    <configuration name="All in WebappTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WebappTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CourseControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebappTest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.instahipsta.webappTest.Service.*" />
+          <option name="PATTERN" value="com.instahipsta.webappTest.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.Service" />
-      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.Service.FileServiceTest" />
+      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.controller.CourseControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileServiceTest.deleteFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CourseControllerTest.changeScheduleWithAdminAuthAllParamTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebappTest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.instahipsta.webappTest.Service.*" />
+          <option name="PATTERN" value="com.instahipsta.webappTest.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.Service" />
-      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.Service.FileServiceTest" />
-      <option name="METHOD_NAME" value="deleteFile" />
+      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.controller.CourseControllerTest" />
+      <option name="METHOD_NAME" value="changeScheduleWithAdminAuthAllParamTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileServiceTest.saveFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CourseServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebappTest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.instahipsta.webappTest.Service.*" />
+          <option name="PATTERN" value="com.instahipsta.webappTest.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.Service" />
-      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.Service.FileServiceTest" />
-      <option name="METHOD_NAME" value="saveFile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ScheduleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="WebappTest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.instahipsta.webappTest.Service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.Service" />
-      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.Service.ScheduleServiceTest" />
+      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.service" />
+      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.service.CourseServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScheduleServiceTest.scheduleFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="WebappTest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.instahipsta.webappTest.Service.*" />
+          <option name="PATTERN" value="com.instahipsta.webappTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.Service" />
-      <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.Service.ScheduleServiceTest" />
-      <option name="METHOD_NAME" value="scheduleFactory" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.instahipsta.webappTest.Application" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ScheduleServiceTest" />
-      <item itemvalue="JUnit.ScheduleServiceTest.scheduleFactory" />
-      <item itemvalue="JUnit.FileServiceTest.saveFile" />
-      <item itemvalue="JUnit.FileServiceTest" />
-      <item itemvalue="JUnit.FileServiceTest.deleteFile" />
+      <item itemvalue="JUnit.CourseControllerTest" />
+      <item itemvalue="JUnit.All in WebappTest" />
+      <item itemvalue="JUnit.CourseControllerTest.changeScheduleWithAdminAuthAllParamTest" />
+      <item itemvalue="Spring Boot.Application" />
+      <item itemvalue="JUnit.CourseServiceTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FileServiceTest" />
-        <item itemvalue="JUnit.FileServiceTest.deleteFile" />
-        <item itemvalue="JUnit.FileServiceTest.saveFile" />
-        <item itemvalue="JUnit.ScheduleServiceTest.scheduleFactory" />
-        <item itemvalue="JUnit.ScheduleServiceTest" />
+        <item itemvalue="JUnit.CourseControllerTest" />
+        <item itemvalue="JUnit.All in WebappTest" />
+        <item itemvalue="JUnit.CourseServiceTest" />
+        <item itemvalue="Spring Boot.Application" />
+        <item itemvalue="JUnit.CourseControllerTest.changeScheduleWithAdminAuthAllParamTest" />
       </list>
     </recent_temporary>
   </component>
@@ -297,7 +309,8 @@
       <workItem from="1573479333125" duration="109000" />
       <workItem from="1573479482197" duration="77551000" />
       <workItem from="1573897653432" duration="45954000" />
-      <workItem from="1574011332081" duration="13970000" />
+      <workItem from="1574011332081" duration="35150000" />
+      <workItem from="1574097567708" duration="14130000" />
     </task>
     <servers />
   </component>
@@ -331,26 +344,19 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/Service/CourseServiceTest.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/WebappTest$All_in_WebappTest.ic" NAME="All in WebappTest Coverage Results" MODIFIED="1574080372655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/WebappTest$ProfileControllerTest.ic" NAME="ProfileControllerTest Coverage Results" MODIFIED="1573924288378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.instahipsta.webappTest.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/WebappTest$UserServiceTest.ic" NAME="UserServiceTest Coverage Results" MODIFIED="1573936782855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.instahipsta.webappTest.Service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/WebappTest$CourseServiceTest.ic" NAME="CourseServiceTest Coverage Results" MODIFIED="1574026715696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.instahipsta.webappTest.Service.*</FILTER>
+    <SUITE FILE_PATH="coverage/WebappTest$CourseServiceTest.ic" NAME="CourseServiceTest Coverage Results" MODIFIED="1574078072955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.instahipsta.webappTest.service.*</FILTER>
     </SUITE>
   </component>
 </project>

@@ -1,6 +1,5 @@
-package com.instahipsta.webappTest;
+package com.instahipsta.webappTest.controller;
 
-import com.instahipsta.webappTest.controller.ProfileController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

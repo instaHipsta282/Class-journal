@@ -1,29 +1,21 @@
 package com.instahipsta.webappTest.controller;
 
-import com.instahipsta.webappTest.domain.Course;
-import com.instahipsta.webappTest.domain.PresenceStatus;
-import com.instahipsta.webappTest.domain.Schedule;
-import com.instahipsta.webappTest.domain.Score;
-import com.instahipsta.webappTest.domain.User;
-import com.instahipsta.webappTest.impl.CourseServiceImpl;
-import com.instahipsta.webappTest.impl.FileServiceImpl;
-import com.instahipsta.webappTest.impl.ScheduleServiceImpl;
-import com.instahipsta.webappTest.impl.UserServiceImpl;
+import com.instahipsta.webappTest.domain.*;
+import com.instahipsta.webappTest.impl.*;
 import com.sun.org.apache.xpath.internal.functions.WrongNumberArgsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/courseList")
@@ -41,97 +33,70 @@ public class CourseController {
     @Autowired
     private FileServiceImpl fileService;
 
+    @Autowired
+    private UtilServiceImpl utilService;
+
+    //testing
     @GetMapping
     public String courseList(Model model) {
         model.addAttribute("courses", courseService.findActuallyCourses());
         return "courseList";
     }
 
+    //testing
     @GetMapping("{course}")
     public String getCourse(@PathVariable Course course, Model model) {
-        model.addAttribute("course", course);
-        model.addAttribute("users", userService.findUsersByCourseId(course.getId()));
+        Map<User, Set<Schedule>> usersSchedule = userService.findUsersSchedule(course);
 
-        Map<User, Set<Schedule>> usersSchedule = new HashMap<>();
-
-        for (User user : userService.findUsersByCourseId(course.getId())) {
-            usersSchedule.put(user, scheduleService.getScheduleByUserAndCourseId(user.getId(), course.getId()));
-        }
-
-        List<LocalDate> scheduleDays = new ArrayList<>();
-
-        LocalDate startDate = Instant.ofEpochMilli(courseService.getStartDateById(course.getId()).getTime())
-                .atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate endDate = Instant.ofEpochMilli(courseService.getEndDateById(course.getId()).getTime())
-                .atZone(ZoneId.systemDefault()).toLocalDate();
-
-        while (startDate.isBefore(endDate)) {
-            scheduleDays.add(startDate);
-            startDate = startDate.plusDays(1);
-        }
-
-        List<User> usersForCourse = userService
-                .findAll()
-                .stream()
-                .filter(u -> !course.getStudents().contains(u))
-                .collect(Collectors.toList());
-
+        List<LocalDate> scheduleDays = courseService.getScheduleDays(course.getStartDate(), course.getEndDate());
         Collections.sort(scheduleDays);
+
+        List<User> usersForCourse = courseService.getNewUsersForCourse(course);
+
         model.addAttribute("usersSchedule", usersSchedule);
         model.addAttribute("scheduleDays", scheduleDays);
         model.addAttribute("presenceStatuses", PresenceStatus.values());
         model.addAttribute("scores", Score.values());
         model.addAttribute("usersForCourse", usersForCourse);
         model.addAttribute("newStudentExist", usersForCourse.size() > 0);
+        model.addAttribute("course", course);
+        model.addAttribute("users", userService.findUsersByCourseId(course.getId()));
 
         return "course";
     }
 
+    //testing
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("addNewCourse")
     public String addNewCourse(Model model,
                                @RequestParam String courseTitle,
                                @RequestParam(required = false) String courseDescription,
                                @RequestParam String startDate,
                                @RequestParam String endDate,
-                               @RequestParam Integer studentsLimit,
-                               @RequestParam MultipartFile courseImage) {
+                               @RequestParam(required = false) Integer studentsLimit,
+                               @RequestParam(required = false) MultipartFile courseImage) {
 
-        Course course = new Course();
+        LocalDate newStartDate = utilService.stringToLocalDate(startDate);
+        LocalDate newEndDate = utilService.stringToLocalDate(endDate);
+        String image = fileService.saveFile(courseImage);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
-        LocalDate newStartDate = LocalDate.parse(startDate, formatter);
-        LocalDate newEndDate = LocalDate.parse(endDate, formatter);
+        Course course = courseService.addNewCourse(courseTitle, courseDescription, newStartDate,
+                                                              newEndDate, studentsLimit, image);
+        courseService.save(course);
 
-        course.setTitle(courseTitle);
-        course.setStartDate(newStartDate);
-        course.setEndDate(newEndDate);
-        course.setStudentsCount(0);
-        if (studentsLimit != null) course.setStudentsLimit(studentsLimit);
-        course.setDaysCount((int) ChronoUnit.DAYS.between(newStartDate, newEndDate));
-
-        if (!courseImage.isEmpty()) {
-            String imageName = fileService.saveFile(courseImage);
-            course.setImage(imageName);
-        }
-
-        if (!courseDescription.isEmpty()) {
-            course.setDescription(courseDescription);
-        }
-
-        if (!courseService.doesThisCourseExist(courseTitle, newStartDate, newEndDate)) {
-            courseService.save(course);
-        } else model.addAttribute("courseTitleError", "This course already exists");
-
+        boolean isSaveOk = courseService.save(course);
+        if (!isSaveOk) model.addAttribute("courseTitleError", "This course already exists");
 
         model.addAttribute("courses", courseService.findActuallyCourses());
 
         return "courseList";
     }
 
+    //testing
     @Transactional
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("deleteCourse")
-    public String deleteCourse(@RequestParam("courseId") Course course,
-                               Model model) {
+    public String deleteCourse(@RequestParam("courseId") Course course) {
 
         scheduleService.deleteAllScheduleForCourse(course.getId());
         courseService.deleteCourse(course);
@@ -139,16 +104,16 @@ public class CourseController {
         return "redirect:/courseList";
     }
 
+    //testing
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("{course}/changeSchedule")
     public String changeSchedule(@PathVariable Course course,
                                  @RequestParam User user,
                                  @RequestParam String date,
                                  @RequestParam(required = false) PresenceStatus presenceStatus,
-                                 @RequestParam(required = false) Score score,
-                                 Model model) {
+                                 @RequestParam(required = false) Score score) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
-        LocalDate scheduleDate = LocalDate.parse(date, formatter);
+        LocalDate scheduleDate = utilService.stringToLocalDate(date);
 
         Schedule schedule = scheduleService
                 .getScheduleByDateUserAndCourseId(scheduleDate, user.getId(), course.getId());
@@ -160,6 +125,8 @@ public class CourseController {
         return "redirect:/courseList/{course}";
     }
 
+    //testing
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("{course}/addUser")
     public String addUser(@PathVariable Course course,
                           @RequestParam(required = false) String usersId,
@@ -184,11 +151,12 @@ public class CourseController {
         return "redirect:/courseList/{course}";
     }
 
+    //testing
     @Transactional
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{course}/deleteUser")
     public String deleteUserFromCourse(@PathVariable Course course,
-                                       @RequestParam String userId,
-                                       Model model) {
+                                       @RequestParam String userId) {
 
         userService.getUserListFromStringWithIds(userId)
                 .forEach(user -> {

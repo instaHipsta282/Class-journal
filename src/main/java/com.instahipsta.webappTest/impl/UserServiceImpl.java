@@ -3,6 +3,7 @@ package com.instahipsta.webappTest.impl;
 import com.instahipsta.webappTest.JsonConverter;
 import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.Role;
+import com.instahipsta.webappTest.domain.Schedule;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.messaging.tasks.MessageWithActivationKey;
 import com.instahipsta.webappTest.repos.UserRepo;
@@ -32,6 +33,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private ScheduleServiceImpl scheduleService;
 
     @Autowired
     private MessageWithActivationKey messageWithActivationKey;
@@ -209,5 +213,16 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username);
+    }
+
+    //testing
+    @Override
+    public Map<User, Set<Schedule>> findUsersSchedule(Course course) {
+        Map<User, Set<Schedule>> usersSchedule = new HashMap<>();
+        long courseId = course.getId();
+        findUsersByCourseId(course.getId())
+                .forEach(user ->
+                        usersSchedule.put(user, scheduleService.getScheduleByUserAndCourseId(user.getId(), courseId)));
+        return usersSchedule;
     }
 }

@@ -4,6 +4,7 @@ import com.instahipsta.webappTest.domain.*;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
 import com.instahipsta.webappTest.impl.ScheduleServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
+import com.instahipsta.webappTest.impl.UtilServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +35,9 @@ public class ScheduleServiceTest {
 
     @Autowired
     private CourseServiceImpl courseService;
+
+    @Autowired
+    private UtilServiceImpl utilService;
 
     @Before
     public void createSchedule() {
@@ -79,8 +82,7 @@ public class ScheduleServiceTest {
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getScheduleByDateUserAndCourseId() throws Exception {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse("2019-11-16", format);
+        LocalDate date = utilService.stringToLocalDate("2019-11-16");
         Schedule schedule = scheduleService.getScheduleByDateUserAndCourseId(date, 1L, 1L);
         Assert.assertNotNull(schedule);
     }
@@ -104,9 +106,9 @@ public class ScheduleServiceTest {
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void scheduleFactory() throws Exception {
-        User user = userService.findUserById(2L);
+        User user = userService.findUserById(3L);
         Course course = courseService.findCourseById(1L);
         scheduleService.scheduleFactory(user, course);
-        Assert.assertEquals(5, scheduleService.getScheduleByUserAndCourseId(2L, 1L).size());
+        Assert.assertEquals(5, scheduleService.getScheduleByUserAndCourseId(3L, 1L).size());
     }
 }

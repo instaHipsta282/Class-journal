@@ -44,7 +44,7 @@ public class Course implements Serializable{
     private Set<User> students = new HashSet<>();
 
     @Column(columnDefinition = "VARCHAR(1000) DEFAULT 'Description for this course has not yet been added.'")
-    private String description;
+    private String description = "Description for this course has not yet been added.";
 
     @Column(columnDefinition = "VARCHAR(255) DEFAULT 'courseDefaultImage.jpg'")
     private String image = "courseDefaultImage.jpg";

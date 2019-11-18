@@ -2,6 +2,7 @@ package com.instahipsta.webappTest.service;
 
 import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.Role;
+import com.instahipsta.webappTest.domain.Schedule;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
@@ -18,6 +19,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
@@ -60,7 +63,7 @@ public class UserServiceTest {
     @Test
     public void findAll() throws Exception {
         List<User> users = userService.findAll();
-        Assert.assertEquals(1, users.size());
+        Assert.assertEquals(2, users.size());
     }
 
     @Test
@@ -236,5 +239,15 @@ public class UserServiceTest {
         Assert.assertTrue(userService.findUsersByCourseId(1).isEmpty());
     }
 
+    @Test
+    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void findUsersSchedule() throws Exception {
+        Course course = courseService.findCourseById(1L);
+        Map<User, Set<Schedule>> usersSchedule = userService.findUsersSchedule(course);
+        Assert.assertEquals(1, usersSchedule.size());
+        Assert.assertEquals(1, (long) usersSchedule.keySet().iterator().next().getId());
+        Assert.assertEquals(5, usersSchedule.values().iterator().next().size());
+    }
 }
 

@@ -1,8 +1,12 @@
 package com.instahipsta.webappTest.services;
 
+import com.instahipsta.webappTest.domain.Course;
+import com.instahipsta.webappTest.domain.Schedule;
 import com.instahipsta.webappTest.domain.User;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface UserService {
 
@@ -35,4 +39,7 @@ public interface UserService {
     void changeSecondName(User user, String secondName);
 
     void changeLastName(User user, String lastName);
+
+    Map<User, Set<Schedule>> findUsersSchedule(Course course);
+
 }

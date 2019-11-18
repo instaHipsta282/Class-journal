@@ -4,6 +4,7 @@ import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
+import com.instahipsta.webappTest.impl.UtilServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,6 +31,9 @@ public class CourseServiceTest {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private UtilServiceImpl utilService;
 
     private Course course;
 
@@ -138,9 +142,8 @@ public class CourseServiceTest {
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void doesThisCourseExist() throws Exception {
         String title = "NotActually";
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-        LocalDate startDate = LocalDate.parse("2019.09.03", format);
-        LocalDate endDate = LocalDate.parse("2019.09.15", format);
+        LocalDate startDate =  utilService.stringToLocalDate("2019-09-03");
+        LocalDate endDate = utilService.stringToLocalDate("2019-09-15");
         Assert.assertTrue(courseService.doesThisCourseExist(title, startDate, endDate));
     }
 
@@ -188,5 +191,61 @@ public class CourseServiceTest {
         Assert.assertEquals(1, courses.size());
     }
 
+    @Test
+    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"},
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void getScheduleDays() throws Exception {
+        Course course = courseService.findCourseById(1L);
+        List<LocalDate> scheduleDays = courseService.getScheduleDays(course.getStartDate(), course.getEndDate());
+        Assert.assertEquals(5, scheduleDays.size());
+    }
+    @Test
+    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"},
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void getNewUsersForCourseTest() throws Exception {
+        Course course = courseService.findCourseById(1L);
+        List<User> users = courseService.getNewUsersForCourse(course);
+        Assert.assertEquals(3, users.size());
+    }
+
+    @Test
+    public void addNewCourseDescriptionNullTest() throws Exception {
+        LocalDate startDate = utilService.stringToLocalDate("2019-03-11");
+        LocalDate endDate = utilService.stringToLocalDate("2019-04-11");
+
+        Course course = courseService.addNewCourse("Data Science",null,
+                                    startDate, endDate, 5, null);
+        Assert.assertEquals("Data Science", course.getTitle());
+        Assert.assertEquals(startDate, course.getStartDate());
+        Assert.assertEquals(endDate, course.getEndDate());
+        Assert.assertEquals(5, course.getStudentsLimit());
+        Assert.assertEquals(0, course.getStudentsCount());
+        Assert.assertEquals(32, course.getDaysCount());
+        Assert.assertEquals(32, course.getDaysCount());
+        Assert.assertEquals("Description for this course has not yet been added.", course.getDescription());
+        Assert.assertEquals("courseDefaultImage.jpg", course.getImage());
+    }
+
+    @Test
+    public void addNewCourseDescriptionExistTest() throws Exception {
+        LocalDate startDate = utilService.stringToLocalDate("2019-03-11");
+        LocalDate endDate = utilService.stringToLocalDate("2019-04-11");
+
+        Course course = courseService.addNewCourse("Data Science","Something description",
+                startDate, endDate, 5, null);
+        Assert.assertEquals("Data Science", course.getTitle());
+        Assert.assertEquals(startDate, course.getStartDate());
+        Assert.assertEquals(endDate, course.getEndDate());
+        Assert.assertEquals(5, course.getStudentsLimit());
+        Assert.assertEquals(0, course.getStudentsCount());
+        Assert.assertEquals(32, course.getDaysCount());
+        Assert.assertEquals(32, course.getDaysCount());
+        Assert.assertEquals("Something description", course.getDescription());
+        Assert.assertEquals("courseDefaultImage.jpg", course.getImage());
+    }
 
 }
