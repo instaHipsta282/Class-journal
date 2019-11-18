@@ -2,6 +2,7 @@ package com.instahipsta.webappTest.controller;
 
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.domain.dto.CaptchaResponseDto;
+import com.instahipsta.webappTest.impl.FileServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,9 @@ public class RegistrationController {
 
     @Autowired
     private ControllerUtils controllerUtils;
+
+    @Autowired
+    private FileServiceImpl fileService;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -80,7 +84,7 @@ public class RegistrationController {
             return "registration";
         }
         if (!usersPhoto.isEmpty()) {
-            String resultFileName = controllerUtils.saveFile(usersPhoto);
+            String resultFileName = fileService.saveFile(usersPhoto);
             user.setPhoto(resultFileName);
         }
 

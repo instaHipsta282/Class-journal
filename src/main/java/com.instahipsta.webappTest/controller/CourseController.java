@@ -6,6 +6,7 @@ import com.instahipsta.webappTest.domain.Schedule;
 import com.instahipsta.webappTest.domain.Score;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
+import com.instahipsta.webappTest.impl.FileServiceImpl;
 import com.instahipsta.webappTest.impl.ScheduleServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
 import com.sun.org.apache.xpath.internal.functions.WrongNumberArgsException;
@@ -38,7 +39,7 @@ public class CourseController {
     private ScheduleServiceImpl scheduleService;
 
     @Autowired
-    private ControllerUtils controllerUtils;
+    private FileServiceImpl fileService;
 
     @GetMapping
     public String courseList(Model model) {
@@ -109,7 +110,7 @@ public class CourseController {
         course.setDaysCount((int) ChronoUnit.DAYS.between(newStartDate, newEndDate));
 
         if (!courseImage.isEmpty()) {
-            String imageName = controllerUtils.saveFile(courseImage);
+            String imageName = fileService.saveFile(courseImage);
             course.setImage(imageName);
         }
 

@@ -3,6 +3,7 @@ package com.instahipsta.webappTest.controller;
 import com.instahipsta.webappTest.domain.Message;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
+import com.instahipsta.webappTest.impl.FileServiceImpl;
 import com.instahipsta.webappTest.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -32,6 +33,9 @@ public class MainController {
 
     @Autowired
     private CourseServiceImpl courseService;
+
+    @Autowired
+    private FileServiceImpl fileService;
 
     @GetMapping("/")
     public String greeting(Model model) {
@@ -77,7 +81,7 @@ public class MainController {
             model.addAttribute("message", message);
         } else {
             if (!file.isEmpty()) {
-                String resultFileName = controllerUtils.saveFile(file);
+                String resultFileName = fileService.saveFile(file);
                 message.setFilename(resultFileName);
             }
 
@@ -125,7 +129,7 @@ public class MainController {
 
             if (!StringUtils.isEmpty(tag)) { message.setTag(tag); }
             if (!file.isEmpty()) {
-                String resultFileName = controllerUtils.saveFile(file);
+                String resultFileName = fileService.saveFile(file);
                 message.setFilename(resultFileName);
             }
             messageRepo.save(message);

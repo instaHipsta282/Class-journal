@@ -1,6 +1,8 @@
 package com.instahipsta.webappTest.services;
 
+import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.Schedule;
+import com.instahipsta.webappTest.domain.User;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -17,7 +19,10 @@ public interface ScheduleService {
 
     List<Date> getScheduleDaysByCourseId(Long courseId);
 
-    void save(Schedule schedule);
+    boolean save(Schedule schedule);
 
     void deleteAllScheduleForCourse(long courseId);
+
+    //testing
+    void scheduleFactory(User student, Course course);
 }

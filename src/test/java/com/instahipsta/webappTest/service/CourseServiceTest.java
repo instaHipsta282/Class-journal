@@ -1,4 +1,4 @@
-package com.instahipsta.webappTest.Service;
+package com.instahipsta.webappTest.service;
 
 import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.User;

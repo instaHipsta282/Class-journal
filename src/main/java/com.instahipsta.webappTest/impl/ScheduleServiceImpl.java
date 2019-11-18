@@ -7,6 +7,7 @@ import com.instahipsta.webappTest.repos.ScheduleRepo;
 import com.instahipsta.webappTest.services.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,34 +20,44 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private ScheduleRepo scheduleRepo;
 
+    //testing
     @Override
     public Set<Schedule> getScheduleByUserAndCourseId(Long userId, Long courseId) {
         return scheduleRepo.getScheduleByUserAndCourseId(userId, courseId);
     }
 
+    //testing
     @Override
     public List<Date> getScheduleDaysByCourseId(Long courseId) {
         return scheduleRepo.getScheduleDaysByCourseId(courseId);
     }
 
+    //testing
+    @Transactional
     @Override
     public void deleteCourseScheduleForUser(long courseId, long userId) {
         scheduleRepo.deleteByCourseIdAndUserId(courseId, userId);
     }
 
+    //testing
     @Override
     public Schedule getScheduleByDateUserAndCourseId(LocalDate date, Long userId, Long courseId) {
         return scheduleRepo.getScheduleByDateUserAndCourseId(date, userId, courseId);
     }
 
+    //testing
     @Override
-    public void save(Schedule schedule) {
-        scheduleRepo.save(schedule);
+    public boolean save(Schedule schedule) {
+        return scheduleRepo.save(schedule) != null;
     }
 
+    //testing
+    @Transactional
     @Override
     public void deleteAllScheduleForCourse(long courseId) { scheduleRepo.deleteAllByCourseId(courseId); }
 
+    //testing
+    @Override
     public void scheduleFactory(User student, Course course) {
         for (int i = 0; i < course.getDaysCount(); i++) {
             Schedule schedule = new Schedule();
