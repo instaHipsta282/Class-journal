@@ -196,7 +196,7 @@ public class CourseServiceImpl implements CourseService {
         course.setStartDate(startDate);
         course.setEndDate(endDate);
         course.setStudentsCount(0);
-        course.setDaysCount((int)ChronoUnit.DAYS.between(startDate, endDate) + 1);
+        course.setDaysCount((int) ChronoUnit.DAYS.between(startDate, endDate) + 1);
         if (studentsLimit != null) course.setStudentsLimit(studentsLimit);
         if (courseDescription != null) course.setDescription(courseDescription);
         if (image != null) course.setImage(image);
@@ -216,5 +216,18 @@ public class CourseServiceImpl implements CourseService {
         model.addAttribute("courses", courses);
 
         return model;
+    }
+
+    //testing
+    @Override
+    public Integer addCourseFromForm(User user, Set<Course> courses, Map<String, String> form) {
+        int[] count = {0};
+        courses.stream()
+                .filter(course -> form.containsKey(course.getId().toString()))
+                .forEach(course -> {
+                    boolean add = addUserToCourse(course, user);
+                    if (add) count[0] += 1;
+                });
+        return count[0];
     }
 }

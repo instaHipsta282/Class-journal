@@ -15,9 +15,12 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.NestedServletException;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +52,9 @@ public class ProfileControllerTest {
     private String testPass = "$2a$08$PZ.ZH2I4rUszoX/FYXZZte./1IogTXOiMpZVHKdgLM/nSKnsur9Wm";
     private String testEmail = "test@gmail.ru";
     private String testPhone = "89999999999";
+    private String testFirstName = "Smith";
+    private String testSecondName = "";
+    private String testLastName = "Mr.";
 
     @Before
     public void init() {
@@ -272,5 +278,106 @@ public class ProfileControllerTest {
 
         User user = userService.findUserById(2L);
         Assert.assertNotEquals(testPhone, user.getPhone());
+    }
+
+    @Test
+    @WithUserDetails("USER")
+    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void changeOnlyFirstNameWithAut() throws Exception {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        this.mockMvc.perform(multipart("/profile/changeName")
+                .sessionAttr("_csrf", this.csrf)
+                .param("firstName", "Stepan")
+                .param("_csrf", this.csrfString))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        User user = userService.findUserById(2L);
+        Assert.assertNotEquals(testFirstName, user.getFirstName());
+    }
+
+    @Test
+    @WithUserDetails("USER")
+    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void changeOnlySecondNameWithAut() throws Exception {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        this.mockMvc.perform(multipart("/profile/changeName")
+                .sessionAttr("_csrf", this.csrf)
+                .param("secondName", "Gennadievich")
+                .param("_csrf", this.csrfString))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        User user = userService.findUserById(2L);
+        Assert.assertNotEquals(testSecondName, user.getSecondName());
+    }
+
+    @Test
+    @WithUserDetails("USER")
+    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void changeNamesWithAut() throws Exception {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        this.mockMvc.perform(multipart("/profile/changeName")
+                .sessionAttr("_csrf", this.csrf)
+                .param("firstName", "Stepan")
+                .param("secondName", "Gennadievich")
+                .param("lastName", "Fomichev")
+                .param("_csrf", this.csrfString))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        User user = userService.findUserById(2L);
+        Assert.assertNotEquals(testFirstName, user.getFirstName());
+        Assert.assertNotEquals(testSecondName, user.getSecondName());
+        Assert.assertNotEquals(testLastName, user.getLastName());
+    }
+
+    @Test(expected = NestedServletException.class)
+    public void changeNamesWithoutAut() throws Exception {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        this.mockMvc.perform(multipart("/profile/changeName")
+                .sessionAttr("_csrf", this.csrf)
+                .param("firstName", "Stepan")
+                .param("_csrf", this.csrfString))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test(expected = NestedServletException.class)
+    public void addCourseWithoutAuth() throws Exception {
+        MultiValueMap<String, String> courses = new LinkedMultiValueMap<>();
+        courses.put("1", Collections.singletonList("firstCourse"));
+        courses.put("2", Collections.singletonList("secondCourse"));
+
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        this.mockMvc.perform(multipart("/profile/addCourse")
+                .sessionAttr("_csrf", this.csrf)
+                .params(courses)
+                .param("_csrf", this.csrfString))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/profile"));
+    }
+
+    @Test
+    @WithUserDetails("USER")
+    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void addCourseWithAuth() throws Exception {
+        MultiValueMap<String, String> courses = new LinkedMultiValueMap<>();
+        courses.put("1", Collections.singletonList("firstCourse"));
+        courses.put("3", Collections.singletonList("secondCourse"));
+
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        this.mockMvc.perform(multipart("/profile/addCourse")
+                .sessionAttr("_csrf", this.csrf)
+                .params(courses)
+                .param("_csrf", this.csrfString))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/profile"));
+
+        User user = userService.findUserById(2L);
+        Assert.assertEquals(2, user.getCourses().size());
     }
 }

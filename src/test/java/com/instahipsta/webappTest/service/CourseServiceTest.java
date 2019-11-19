@@ -19,10 +19,7 @@ import org.springframework.ui.Model;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -259,5 +256,20 @@ public class CourseServiceTest {
         Assert.assertTrue(resultModel.containsAttribute("currentUser"));
         Assert.assertTrue(resultModel.containsAttribute("userCourses"));
         Assert.assertTrue(resultModel.containsAttribute("courses"));
+    }
+
+    @Test
+    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void addCourseFromForm() {
+        User user = userService.findUserById(2L);
+        Set<Course> availableCourses = courseService.findAvailableCoursesForUser(user);
+
+        Map<String, String> courses = new HashMap<>();
+        courses.put("1", "firstCourse");
+        courses.put("3", "secondCourse");
+
+        int count = courseService.addCourseFromForm(user, availableCourses, courses);
+        Assert.assertEquals(2, count);
     }
 }

@@ -54,4 +54,7 @@ public interface CourseService {
 
     //testing
     Model addDataToModel(User user, Model model);
+
+    //testing
+    Integer addCourseFromForm(User user, Set<Course> courses, Map<String, String> form);
 }

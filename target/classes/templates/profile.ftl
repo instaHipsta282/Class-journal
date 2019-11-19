@@ -257,7 +257,7 @@
                                             <div class="collapse <#if someNameError??>show</#if>"
                                                  id="collapseFive">
                                                 <div class="form-group mt-3">
-                                                    <form method="post" action="/changeName"
+                                                    <form method="post" action="profile/changeName"
                                                           enctype="multipart/form-data">
                                                         <div class="form-group row">
                                                             <label class="col-sm-5 col-form-label">First name:</label>
@@ -371,7 +371,7 @@
                                                aria-expanded="false">
                                                 Add course
                                             </a>
-                                            <form action="/addCourse" method="post">
+                                            <form action="/profile/addCourse" method="post">
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                     <#list courses as course>
                                                         <a class="dropdown-item" href="#">

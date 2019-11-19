@@ -1,7 +1,7 @@
 ALTER SEQUENCE schedule_id_seq RESTART WITH 100;
 
 INSERT INTO course (id, title, start_date, end_date, days_count, students_count, students_limit)
-VALUES (1, 'Present', '2019-11-16', '2019-11-20', 5, 1, 5);
+VALUES (1, 'Present', '2019-11-19', '2019-11-23', 5, 1, 5);
 
 INSERT INTO course (id, title, start_date, end_date, days_count, students_count, students_limit)
 VALUES (3, 'Future', '2019-12-01', '2019-12-06', 6, 1, 5);
