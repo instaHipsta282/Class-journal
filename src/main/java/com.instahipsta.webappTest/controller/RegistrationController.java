@@ -4,6 +4,7 @@ import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.domain.dto.CaptchaResponseDto;
 import com.instahipsta.webappTest.impl.FileServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
+import com.instahipsta.webappTest.impl.UtilServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class RegistrationController {
     private RestTemplate restTemplate;
 
     @Autowired
-    private ControllerUtils controllerUtils;
+    private UtilServiceImpl utilService;
 
     @Autowired
     private FileServiceImpl fileService;
@@ -77,7 +78,7 @@ public class RegistrationController {
         }
 
         if (isConfirmEmpty || bindingResult.hasErrors() || (response != null && !response.isSuccess()) || isEmailAlreadyUse) {
-            Map<String, String> errors = controllerUtils.getErrors(bindingResult);
+            Map<String, String> errors = utilService.getErrors(bindingResult);
 
             model.mergeAttributes(errors);
 

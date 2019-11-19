@@ -69,4 +69,16 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
     }
 
+    //testing
+    @Override
+    @Transactional
+    public void deleteAllScheduleForUser(User user) {
+        if (user != null) scheduleRepo.deleteAllByUserId(user.getId());
+    }
+
+    //testing
+    @Override
+    public Set<Schedule> getScheduleByUser(User user) {
+        return scheduleRepo.findAllByUserId(user.getId());
+    }
 }

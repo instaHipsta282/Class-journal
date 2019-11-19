@@ -78,18 +78,16 @@ public class UserController {
 
     @PostMapping("/changePhone")
     public String changePhone(@AuthenticationPrincipal User user,
-                              @RequestParam String oldPhone,
                               @RequestParam String newPhone,
                               @RequestParam String password,
                               Model model) {
         boolean isPasswordOk = checkPassword(password, user, model);
-        boolean isPhoneOk = checkPhone(user, oldPhone, model);
-        boolean isNewPhoneOk = checkNewPhone(user, oldPhone, newPhone, model);
+        boolean isNewPhoneOk = checkNewPhone(user, newPhone, model);
 
         //If user have some error in email edit form, form don`t collapse
         model.addAttribute("somePhoneError", "You have some phone error");
 
-        if (isPasswordOk && isPhoneOk && isNewPhoneOk) {
+        if (isPasswordOk && isNewPhoneOk) {
             model.addAttribute("somePhoneError", null);
 
             userService.changePhone(user, newPhone);
@@ -204,27 +202,10 @@ public class UserController {
         return check;
     }
 
-    private boolean checkPhone(User user, String phone, Model model) {
-        boolean check = true;
-        if (phone.isEmpty()) {
-            check = false;
-            model.addAttribute("oldPhoneError", "The old phone number field cannot be empty");
-        }
-        if (!user.getPhone().equals(phone)) {
-            check = false;
-            model.addAttribute("oldPhoneError", "The phone number is failed");
-        }
-        return check;
-    }
-
-    private boolean checkNewPhone(User user, String phone, String newPhone, Model model) {
+    private boolean checkNewPhone(User user, String newPhone, Model model) {
         boolean check = true;
 
-        if (newPhone.isEmpty()) {
-            check = false;
-            model.addAttribute("newPhoneError", "The new phone number field cannot be empty");
-        }
-        if (newPhone.equals(phone)) {
+        if (newPhone.equals(user.getPhone())) {
             check = false;
             model.addAttribute("oldPhoneError", "The phone numbers cannot be equals");
         }

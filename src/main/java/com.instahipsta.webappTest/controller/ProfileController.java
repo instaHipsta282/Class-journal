@@ -13,12 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 import java.util.Set;
 
 @Controller
+@RequestMapping("/profile")
 public class ProfileController {
     @Autowired
     private UserRepo userRepo;
@@ -35,128 +37,75 @@ public class ProfileController {
     @Autowired
     private ScheduleServiceImpl scheduleService;
 
-
-    @GetMapping("/profile")
+    //testing
+    @GetMapping
     public String getProfile(@AuthenticationPrincipal User user,
                              Model model) {
-        loadDataForProfile(user, model);
+        courseService.addDataToModel(user, model);
 
         return "profile";
     }
 
+    //testing
     @PostMapping("/changePassword")
     public String changePassword(@AuthenticationPrincipal User user,
                                  @RequestParam String oldPassword,
                                  @RequestParam String newPassword,
                                  @RequestParam String newPasswordRe,
                                  Model model) {
-        loadDataForProfile(user, model);
+        courseService.addDataToModel(user, model);
+
         //If user have some error in password edit form, form don`t collapse
         model.addAttribute("somePasswordError", "You have some password error");
-
-        System.out.println("Start changing: " + oldPassword + " " + newPassword);
 
         boolean oldPasswordOk = checkPassword(oldPassword, user, model);
         boolean newPasswordOk = checkNewPassword(newPassword, newPasswordRe, oldPassword, model);
 
         if (oldPasswordOk && newPasswordOk) {
             model.addAttribute("somePasswordError", null);
-            System.out.println("Password are correct: " + oldPassword + newPassword);
             userService.changePassword(user, newPassword);
         }
-
         return "profile";
     }
 
-
+    //testing
     @PostMapping("/changeEmail")
     public String changeEmail(@AuthenticationPrincipal User user,
-                              Model model,
-                              @RequestParam String oldEmail,
                               @RequestParam String newEmail,
-                              @RequestParam String password
-    ) {
-
-        boolean isOldEmailTrue = user.getEmail().equals(oldEmail);
-        boolean isPasswordTrue = passwordEncoder.matches(password, user.getPassword());
-        boolean isEmailsEquals = newEmail.equals(oldEmail);
+                              @RequestParam String password,
+                              Model model) {
+        courseService.addDataToModel(user, model);
 
         //If user have some error in email edit form, form don`t collapse
         model.addAttribute("someEmailError", "You have some email error");
 
-        if (oldEmail.isEmpty()) {
-            model.addAttribute("oldEmailError", "The old email field cannot be empty");
-        }
+        boolean isPasswordOk = checkPassword(password, user, model);
+        boolean isNewEmailOk = checkNewEmail(user, newEmail, model);
 
-        if (newEmail.isEmpty()) {
-            model.addAttribute("newEmailError", "The new email field cannot be empty");
-        }
-
-        if (password.isEmpty()) {
-            model.addAttribute("passwordError", "The password field cannot be empty");
-        }
-        if (isEmailsEquals) {
-            model.addAttribute("oldEmailError", "The emails cannot be equals");
-        }
-        if (!isPasswordTrue) {
-            model.addAttribute("passwordError", "The password is failed");
-        }
-        if (!isOldEmailTrue) {
-            model.addAttribute("oldEmailError", "The email is failed");
-        }
-
-        if (!oldEmail.isEmpty() && !newEmail.isEmpty() && !password.isEmpty() && isOldEmailTrue && isPasswordTrue && !isEmailsEquals) {
-
+        if (isPasswordOk && isNewEmailOk) {
             model.addAttribute("someEmailError", null);
-
             userService.changeEmail(user, newEmail);
         }
-
         return "profile";
     }
 
+    //testing
     @PostMapping("/changePhone")
     public String changePhone(@AuthenticationPrincipal User user,
-                              Model model,
-                              @RequestParam String oldPhone,
                               @RequestParam String newPhone,
-                              @RequestParam String password
-    ) {
-
-        boolean isOldPhoneTrue = user.getPhone().equals(oldPhone);
-        boolean isPasswordTrue = passwordEncoder.matches(password, user.getPassword());
-        boolean isPhonesEquals = newPhone.equals(oldPhone);
+                              @RequestParam String password,
+                              Model model) {
+        courseService.addDataToModel(user, model);
 
         //If user have some error in email edit form, form don`t collapse
         model.addAttribute("somePhoneError", "You have some phone error");
 
-        if (oldPhone.isEmpty()) {
-            model.addAttribute("oldPhoneError", "The old phone number field cannot be empty");
-        }
+        boolean isPasswordOk = checkPassword(password, user, model);
+        boolean isNewPhoneOk = checkNewPhone(user, newPhone, model);
 
-        if (newPhone.isEmpty()) {
-            model.addAttribute("newPhoneError", "The new phone number field cannot be empty");
-        }
-
-        if (password.isEmpty()) {
-            model.addAttribute("passwordError", "The password field cannot be empty");
-        }
-        if (isPhonesEquals) {
-            model.addAttribute("oldPhoneError", "The phone numbers cannot be equals");
-        }
-        if (!isPasswordTrue) {
-            model.addAttribute("passwordError", "The password is failed");
-        }
-        if (!isOldPhoneTrue) {
-            model.addAttribute("oldPhoneError", "The phone number is failed");
-        }
-
-        if (!oldPhone.isEmpty() && !newPhone.isEmpty() && !password.isEmpty() && isOldPhoneTrue && isPasswordTrue && !isPhonesEquals) {
-
+        if (isPasswordOk && isNewPhoneOk) {
             model.addAttribute("somePhoneError", null);
-
-            user.setPhone(newPhone);
-            userRepo.save(user);
+            userService.changePhone(user, newPhone);
         }
 
         return "profile";
@@ -231,23 +180,10 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-    private void loadDataForProfile(User user, Model model) {
-        Set<Course> courses = courseService.findActuallyCourses();
-        courses.removeAll(courseService.findActuallyCoursesByUserId(user.getId()));
-
-        model.addAttribute("currentUser", user);
-        model.addAttribute("userCourses", courseService.findActuallyCoursesByUserId(user.getId()));
-        model.addAttribute("courses", courses);
-
-    }
-
-
     private boolean checkPassword(String password, User user, Model model) {
-        if (password.isEmpty()) {
-            model.addAttribute("oldPasswordError", "The old password field cannot be empty");
-        }
-        else if (!passwordEncoder.matches(password, user.getPassword())) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             model.addAttribute("oldPasswordError", "The password is failed");
+            model.addAttribute("passwordError", "The password is failed");
         }
         else return true;
 
@@ -255,13 +191,7 @@ public class ProfileController {
     }
 
     private boolean checkNewPassword(String newPassword, String newPasswordRe, String password, Model model) {
-        if (newPassword.isEmpty()) {
-            model.addAttribute("newPasswordError", "The new password field cannot be empty");
-        }
-        else if (newPasswordRe.isEmpty()) {
-            model.addAttribute("newPasswordReError", "The repeated new password field cannot be empty");
-        }
-        else if (!newPassword.equals(newPasswordRe)) {
+        if (!newPassword.equals(newPasswordRe)) {
             model.addAttribute("newPasswordError",
                     "The new password and new repeated password fields are different");
         }
@@ -272,6 +202,27 @@ public class ProfileController {
 
         return false;
     }
+
+    private boolean checkNewEmail(User user, String newEmail, Model model) {
+        boolean check = true;
+
+        if (user.getEmail().equals(newEmail)) {
+            check = false;
+            model.addAttribute("newEmailError", "You are already using this email");
+        }
+        return check;
+    }
+
+    private boolean checkNewPhone(User user, String newPhone, Model model) {
+        boolean check = true;
+
+        if (newPhone.equals(user.getPhone())) {
+            check = false;
+            model.addAttribute("oldPhoneError", "The phone numbers cannot be equals");
+        }
+        return check;
+    }
+
 
 }
 

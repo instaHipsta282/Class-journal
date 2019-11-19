@@ -249,5 +249,14 @@ public class UserServiceTest {
         Assert.assertEquals(1, (long) usersSchedule.keySet().iterator().next().getId());
         Assert.assertEquals(5, usersSchedule.values().iterator().next().size());
     }
+
+    @Test
+
+    @Sql(value = { "/create-user-for-delete.sql" }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    public void delete() throws Exception {
+        User user = userService.findUserById(3L);
+        userService.delete(user);
+        Assert.assertNull(userService.findUserById(3L));
+    }
 }
 

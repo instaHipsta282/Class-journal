@@ -36,5 +36,9 @@ public interface ScheduleRepo extends JpaRepository<Schedule, Long> {
     void deleteAllByCourseId(Long courseId);
 
     void deleteByCourseIdAndUserId(long courseId, long userId);
+
+    void deleteAllByUserId(Long id);
+
+    Set<Schedule> findAllByUserId(Long id);
 }
 

@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="collapse <#if somePasswordError??>show</#if>" id="collapseTwo">
                                                 <div class="form-group mt-3">
-                                                    <form method="post" action="/changePassword"
+                                                    <form method="post" action="/profile/changePassword"
                                                           enctype="multipart/form-data">
                                                         <div class="form-group row">
                                                             <label class="col-sm-5 col-form-label"
@@ -140,22 +140,8 @@
                                             <div class="collapse <#if someEmailError??>show</#if>"
                                                  id="collapseThree">
                                                 <div class="form-group mt-3">
-                                                    <form method="post" action="/changeEmail"
+                                                    <form method="post" action="/profile/changeEmail"
                                                           enctype="multipart/form-data">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Current
-                                                                email: </label>
-                                                            <div class="col-sm-7">
-                                                                <input type="email" name="oldEmail"
-                                                                       class="form-control ${(oldEmailError??)?string('is-invalid', '')}"
-                                                                       placeholder="Enter your current email"/>
-                                                                <#if oldEmailError??>
-                                                                    <div class="invalid-feedback">
-                                                                        ${oldEmailError}
-                                                                    </div>
-                                                                </#if>
-                                                            </div>
-                                                        </div>
                                                         <div class="form-group row">
                                                             <label class="col-sm-5 col-form-label">New
                                                                 email: </label>
@@ -213,22 +199,8 @@
                                             <div class="collapse <#if somePhoneError??>show</#if>"
                                                  id="collapseFour">
                                                 <div class="form-group mt-3">
-                                                    <form method="post" action="/changePhone"
+                                                    <form method="post" action="/profile/changePhone"
                                                           enctype="multipart/form-data">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Current
-                                                                phone number: </label>
-                                                            <div class="col-sm-7">
-                                                                <input type="text" name="oldPhone"
-                                                                       class="form-control ${(oldPhoneError??)?string('is-invalid', '')}"
-                                                                       placeholder="Enter your current phone number"/>
-                                                                <#if oldPhoneError??>
-                                                                    <div class="invalid-feedback">
-                                                                        ${oldPhoneError}
-                                                                    </div>
-                                                                </#if>
-                                                            </div>
-                                                        </div>
                                                         <div class="form-group row">
                                                             <label class="col-sm-5 col-form-label">New
                                                                 phone number: </label>

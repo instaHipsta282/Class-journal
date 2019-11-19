@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -201,6 +203,7 @@ public class CourseServiceTest {
         List<LocalDate> scheduleDays = courseService.getScheduleDays(course.getStartDate(), course.getEndDate());
         Assert.assertEquals(5, scheduleDays.size());
     }
+
     @Test
     @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
@@ -248,4 +251,13 @@ public class CourseServiceTest {
         Assert.assertEquals("courseDefaultImage.jpg", course.getImage());
     }
 
+    @Test
+    public void addDataToModel() {
+        User user = userService.findUserById(1L);
+        Model model = new ExtendedModelMap();
+        Model resultModel = courseService.addDataToModel(user, model);
+        Assert.assertTrue(resultModel.containsAttribute("currentUser"));
+        Assert.assertTrue(resultModel.containsAttribute("userCourses"));
+        Assert.assertTrue(resultModel.containsAttribute("courses"));
+    }
 }

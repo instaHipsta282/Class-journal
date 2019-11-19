@@ -2,6 +2,7 @@ package com.instahipsta.webappTest.services;
 
 import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.User;
+import org.springframework.ui.Model;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -50,4 +51,7 @@ public interface CourseService {
                         LocalDate endDate,
                         Integer studentsLimit,
                         String  image);
+
+    //testing
+    Model addDataToModel(User user, Model model);
 }

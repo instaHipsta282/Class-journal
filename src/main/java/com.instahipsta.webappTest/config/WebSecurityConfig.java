@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return new MyCustomLoginSuccessHandler("/main");
+        return new MyCustomLoginSuccessHandler("/");
     }
 
     @Override

@@ -42,4 +42,5 @@ public interface UserService {
 
     Map<User, Set<Schedule>> findUsersSchedule(Course course);
 
+    void delete(User user);
 }

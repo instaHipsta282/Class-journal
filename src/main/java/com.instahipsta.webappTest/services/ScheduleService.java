@@ -25,4 +25,8 @@ public interface ScheduleService {
 
     //testing
     void scheduleFactory(User student, Course course);
+
+    void deleteAllScheduleForUser(User user);
+
+    Set<Schedule> getScheduleByUser(User user);
 }

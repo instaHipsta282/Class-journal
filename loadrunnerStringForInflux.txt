@@ -1,1 +1,0 @@
-loadrunner,label=transaction_name,responseCode=200_for_example,success=true/false responseTime=responseTime,bytes=reciveBites,sentBytes=sentBites timestamp

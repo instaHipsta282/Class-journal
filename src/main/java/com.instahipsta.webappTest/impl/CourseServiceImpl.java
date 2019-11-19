@@ -7,6 +7,7 @@ import com.instahipsta.webappTest.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import javax.naming.LimitExceededException;
 import java.time.LocalDate;
@@ -201,5 +202,19 @@ public class CourseServiceImpl implements CourseService {
         if (image != null) course.setImage(image);
 
         return course;
+    }
+
+    //testing
+    @Override
+    public Model addDataToModel(User user, Model model) {
+
+        Set<Course> courses = findActuallyCourses();
+        courses.removeAll(findActuallyCoursesByUserId(user.getId()));
+
+        model.addAttribute("currentUser", user);
+        model.addAttribute("userCourses", findActuallyCoursesByUserId(user.getId()));
+        model.addAttribute("courses", courses);
+
+        return model;
     }
 }

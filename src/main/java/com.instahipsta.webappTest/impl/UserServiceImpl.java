@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         else return null;
     }
 
-
     //testing
     @Override
     public boolean addUser(User user) {
@@ -224,5 +223,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
                 .forEach(user ->
                         usersSchedule.put(user, scheduleService.getScheduleByUserAndCourseId(user.getId(), courseId)));
         return usersSchedule;
+    }
+
+    //testing
+    @Override
+    public void delete(User user) {
+        scheduleService.deleteAllScheduleForUser(user);
+        userRepo.delete(user);
     }
 }
