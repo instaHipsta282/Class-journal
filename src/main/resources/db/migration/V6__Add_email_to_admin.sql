@@ -1,1 +1,0 @@
-UPDATE usr SET email = 'stepaden@mail.ru' WHERE id = 1;

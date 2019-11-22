@@ -36,14 +36,12 @@ public class CourseController {
     @Autowired
     private UtilServiceImpl utilService;
 
-    //testing
     @GetMapping
     public String courseList(Model model) {
         model.addAttribute("courses", courseService.findActuallyCourses());
         return "courseList";
     }
 
-    //testing
     @GetMapping("{course}")
     public String getCourse(@PathVariable Course course, Model model) {
         Map<User, Set<Schedule>> usersSchedule = userService.findUsersSchedule(course);
@@ -65,7 +63,6 @@ public class CourseController {
         return "course";
     }
 
-    //testing
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("addNewCourse")
     public String addNewCourse(Model model,
@@ -92,7 +89,6 @@ public class CourseController {
         return "courseList";
     }
 
-    //testing
     @Transactional
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("deleteCourse")
@@ -104,7 +100,6 @@ public class CourseController {
         return "redirect:/courseList";
     }
 
-    //testing
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("{course}/changeSchedule")
     public String changeSchedule(@PathVariable Course course,
@@ -125,7 +120,6 @@ public class CourseController {
         return "redirect:/courseList/{course}";
     }
 
-    //testing
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("{course}/addUser")
     public String addUser(@PathVariable Course course,
@@ -151,7 +145,6 @@ public class CourseController {
         return "redirect:/courseList/{course}";
     }
 
-    //testing
     @Transactional
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{course}/deleteUser")
@@ -166,5 +159,4 @@ public class CourseController {
 
         return "redirect:/courseList/{course}";
     }
-
 }

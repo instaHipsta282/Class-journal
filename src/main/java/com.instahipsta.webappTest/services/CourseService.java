@@ -42,7 +42,6 @@ public interface CourseService {
 
     List<LocalDate> getScheduleDays(LocalDate startDate, LocalDate endDate);
 
-    //testing
     List<User> getNewUsersForCourse(Course course);
 
     Course addNewCourse(String courseTitle,
@@ -52,9 +51,7 @@ public interface CourseService {
                         Integer studentsLimit,
                         String  image);
 
-    //testing
     Model addDataToModel(User user, Model model);
 
-    //testing
     Integer addCourseFromForm(User user, Set<Course> courses, Map<String, String> form);
 }

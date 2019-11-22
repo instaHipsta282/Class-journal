@@ -1,6 +1,7 @@
 package com.instahipsta.webappTest.repos;
 
 import com.instahipsta.webappTest.domain.Schedule;
+import com.instahipsta.webappTest.domain.Score;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -40,5 +41,13 @@ public interface ScheduleRepo extends JpaRepository<Schedule, Long> {
     void deleteAllByUserId(Long id);
 
     Set<Schedule> findAllByUserId(Long id);
+
+    @Query(value = "SELECT score " +
+            "FROM schedule " +
+            "WHERE course_id = ?2 " +
+            "AND user_id = ?1 " +
+            "AND score <> 'NONE'"
+            , nativeQuery = true)
+    List<Score> findScoreByUserIdAndCourseId(Long userId, Long courseId);
 }
 

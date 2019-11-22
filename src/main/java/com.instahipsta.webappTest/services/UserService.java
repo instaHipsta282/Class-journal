@@ -2,7 +2,9 @@ package com.instahipsta.webappTest.services;
 
 import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.Schedule;
+import com.instahipsta.webappTest.domain.Score;
 import com.instahipsta.webappTest.domain.User;
+import com.sun.org.apache.xpath.internal.functions.WrongNumberArgsException;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +30,12 @@ public interface UserService {
 
     boolean isEmailAlreadyUse(String email);
 
+    List<User> getUserListFromStringWithIds(String usersId);
+
+    List<User> getUserListFromStringWithName(String userName) throws WrongNumberArgsException;
+
+    void deleteUserFromCourse(Course course, User user);
+
     User save(User user);
 
     void changePassword(User user, String newPassword);
@@ -43,4 +51,8 @@ public interface UserService {
     Map<User, Set<Schedule>> findUsersSchedule(Course course);
 
     void delete(User user);
+
+    Double scoreConverter(Score score);
+
+    Double averageScore(List<Score> scores);
 }

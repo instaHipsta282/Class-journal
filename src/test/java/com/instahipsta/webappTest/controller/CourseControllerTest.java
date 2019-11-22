@@ -1,6 +1,5 @@
 package com.instahipsta.webappTest.controller;
 
-import com.instahipsta.webappTest.impl.CourseServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,19 +37,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class CourseControllerTest {
 
+    private byte[] fileData;
+    private String csrfString;
+    private Map<String, Object> csrf;
+
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private CourseServiceImpl courseService;
-
-    private byte[] fileData;
-    private String csrfString;
-
-    @Autowired
     private WebApplicationContext webApplicationContext;
-
-    private Map<String, Object> csrf;
 
     @Before
     public void createMultipartFile() {

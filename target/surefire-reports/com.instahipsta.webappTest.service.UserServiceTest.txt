@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.instahipsta.webappTest.service.UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 30, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 2.037 s <<< FAILURE! - in com.instahipsta.webappTest.service.UserServiceTest
+isEmailAlreadyUse(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.instahipsta.webappTest.service.UserServiceTest.isEmailAlreadyUse(UserServiceTest.java:82)
+
+addUser(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.047 s  <<< ERROR!
+org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [usr_pkey]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at com.instahipsta.webappTest.service.UserServiceTest.addUser(UserServiceTest.java:215)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at com.instahipsta.webappTest.service.UserServiceTest.addUser(UserServiceTest.java:215)
+Caused by: org.postgresql.util.PSQLException: 
+ERROR: duplicate key value violates unique constraint "usr_pkey"
+  Подробности: Key (id)=(2) already exists.
+	at com.instahipsta.webappTest.service.UserServiceTest.addUser(UserServiceTest.java:215)
+
+save(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.013 s  <<< ERROR!
+org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [usr_pkey]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at com.instahipsta.webappTest.service.UserServiceTest.save(UserServiceTest.java:127)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at com.instahipsta.webappTest.service.UserServiceTest.save(UserServiceTest.java:127)
+Caused by: org.postgresql.util.PSQLException: 
+ERROR: duplicate key value violates unique constraint "usr_pkey"
+  Подробности: Key (id)=(2) already exists.
+	at com.instahipsta.webappTest.service.UserServiceTest.save(UserServiceTest.java:127)
+

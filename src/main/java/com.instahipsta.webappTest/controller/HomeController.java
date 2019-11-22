@@ -13,7 +13,6 @@ public class HomeController {
     @Autowired
     private CourseServiceImpl courseService;
 
-    //testing
     @GetMapping("/")
     public String getHomePage(Model model) {
 
@@ -24,5 +23,4 @@ public class HomeController {
 
         return "home";
     }
-
 }

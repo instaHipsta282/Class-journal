@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.instahipsta.webappTest.service.CourseServiceTest
+-------------------------------------------------------------------------------
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.323 s - in com.instahipsta.webappTest.service.CourseServiceTest

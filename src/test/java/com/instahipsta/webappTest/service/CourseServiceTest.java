@@ -165,10 +165,6 @@ public class CourseServiceTest {
         Date endDate = format.parse("2019-09-15");
         Assert.assertEquals(endDate, courseService.getEndDateById(2L));
     }
-    @Test
-    public void percentCounter() {
-        Assert.assertEquals("93.3", courseService.percentCounter(60, 56));
-    }
 
     @Test
     @Sql(value = {"/create-courses-before-course-controller.sql"},
@@ -198,7 +194,7 @@ public class CourseServiceTest {
     public void getScheduleDays() throws Exception {
         Course course = courseService.findCourseById(1L);
         List<LocalDate> scheduleDays = courseService.getScheduleDays(course.getStartDate(), course.getEndDate());
-        Assert.assertEquals(5, scheduleDays.size());
+        Assert.assertEquals(18, scheduleDays.size());
     }
 
     @Test

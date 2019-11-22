@@ -1,5 +1,5 @@
 package com.instahipsta.webappTest.domain;
 
 public enum Score {
-    A, B, C, D, F, NONE;
+    AA, A, B, C, D, F, NONE;
 }

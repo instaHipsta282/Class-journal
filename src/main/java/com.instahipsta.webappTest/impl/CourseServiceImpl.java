@@ -27,10 +27,6 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private UserServiceImpl userService;
 
-    @Autowired
-    private UtilServiceImpl utilService;
-
-    //testing
     @Override
     public boolean save(Course course) {
         if (!doesThisCourseExist(course.getTitle(), course.getStartDate(), course.getEndDate())) {
@@ -40,99 +36,78 @@ public class CourseServiceImpl implements CourseService {
         return false;
     }
 
-    //testing
     @Override
     public Set<Course> findActuallyCoursesByUserId(long userId) {
         return new HashSet<>(courseRepo.findActuallyCoursesByUserId(userId, new Date()));
     }
 
-    //testing
     @Override
     public Set<Course> findAll() {
         return new HashSet<>(courseRepo.findAll());
     }
 
-    //testing
     @Override
     public Set<Course> findActuallyCourses() {
         Date currentDate = new Date();
-
         return new HashSet<>(courseRepo.findActuallyCourses(currentDate));
     }
 
-    //testing
     @Override
     public Set<Course> findPresentCourses() {
         Date currentDate = new Date();
-
         return new HashSet<>(courseRepo.findPresentCourses(currentDate));
     }
 
-    //testing
     @Override
     public Set<Course> findPassCourses() {
         Date currentDate = new Date();
-
         return new HashSet<>(courseRepo.findPassCourses(currentDate));
     }
 
-    //testing
     @Override
     public Set<Course> findFutureCourses() {
         Date currentDate = new Date();
-
         return new HashSet<>(courseRepo.findFutureCourses(currentDate));
     }
 
-    //testing
     @Override
     public Map<Course, String> actuallyCoursesWithPercent() {
         Map<Course, String> map = new HashMap<>();
         Set<Course> courses = findActuallyCourses();
-        courses.forEach(c -> map.put(c, percentCounter(c.getStudentsLimit(), c.getStudentsCount())));
+        courses.forEach(c -> {
+            double percent = utilService.percentCounter(c.getStudentsLimit(), c.getStudentsCount());
+            map.put(c, utilService.doubleToString(percent, 1));
+        });
         return map;
     }
 
-    //testing
     @Override
-    public Course findCourseById(long id) {
-        Course course = courseRepo.findCourseById(id);
-        return courseRepo.findCourseById(id);
-    }
+    public Course findCourseById(long id) { return courseRepo.findCourseById(id); }
 
-    //testing
+    @Autowired
+    private UtilServiceImpl utilService;
+
     @Override
     public void deleteCourse(Course course) {
         courseRepo.delete(course);
     }
 
-    //testing
     @Override
     public Boolean doesThisCourseExist(String courseTitle, LocalDate startDate, LocalDate endDate) {
         int count = courseRepo.findCourseByTitleAndDates(courseTitle, startDate, endDate);
         return count == 1;
     }
 
-    //testing
     @Override
     public Date getStartDateById(Long courseId) {
         return courseRepo.getStartDateById(courseId);
     }
 
-    //testing
     @Override
     public Date getEndDateById(Long courseId) {
         return courseRepo.getEndDateById(courseId);
     }
 
-    //testing
-    public String percentCounter(int fullNumber, int partOfNumber) {
-        double onePercent = ((double) fullNumber / 100);
-        double percent = partOfNumber / onePercent;
-        return String.format("%.1f", percent).replace(',', '.');
-    }
-
-    //testing
     @Transactional
     public boolean addUserToCourse(Course course, User user) {
         if (course.getStudentsLimit() > course.getStudentsCount()) {
@@ -151,7 +126,6 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
-    //testing
     @Override
     public Set<Course> findAvailableCoursesForUser(User user) {
         Set<Course> availableCourses = findActuallyCourses();
@@ -160,7 +134,6 @@ public class CourseServiceImpl implements CourseService {
         return availableCourses;
     }
 
-    //testing
     @Override
     public List<LocalDate> getScheduleDays(LocalDate startDate, LocalDate endDate) {
         List<LocalDate> scheduleDays = new ArrayList<>();
@@ -171,7 +144,6 @@ public class CourseServiceImpl implements CourseService {
         return scheduleDays;
     }
 
-    //testing
     @Override
     public List<User> getNewUsersForCourse(Course course) {
         List<User> usersForCourse = userService
@@ -182,7 +154,6 @@ public class CourseServiceImpl implements CourseService {
         return usersForCourse;
     }
 
-    //testing
     @Override
     public Course addNewCourse(String courseTitle,
                                String courseDescription,
@@ -204,7 +175,6 @@ public class CourseServiceImpl implements CourseService {
         return course;
     }
 
-    //testing
     @Override
     public Model addDataToModel(User user, Model model) {
 
@@ -218,7 +188,6 @@ public class CourseServiceImpl implements CourseService {
         return model;
     }
 
-    //testing
     @Override
     public Integer addCourseFromForm(User user, Set<Course> courses, Map<String, String> form) {
         int[] count = {0};

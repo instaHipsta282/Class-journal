@@ -1,10 +1,6 @@
 package com.instahipsta.webappTest.impl;
 
-import com.instahipsta.webappTest.JsonConverter;
-import com.instahipsta.webappTest.domain.Course;
-import com.instahipsta.webappTest.domain.Role;
-import com.instahipsta.webappTest.domain.Schedule;
-import com.instahipsta.webappTest.domain.User;
+import com.instahipsta.webappTest.domain.*;
 import com.instahipsta.webappTest.messaging.tasks.MessageWithActivationKey;
 import com.instahipsta.webappTest.repos.UserRepo;
 import com.instahipsta.webappTest.services.UserService;
@@ -40,10 +36,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private MessageWithActivationKey messageWithActivationKey;
 
+    @Autowired
+    private UtilServiceImpl utilService;
+
     @Value("${my_hostname}")
     private String hostname;
 
-    //testing
     @Override
     public User findUserById(long userId) {
         if (userRepo.findById(userId).isPresent()) {
@@ -52,7 +50,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         else return null;
     }
 
-    //testing
     @Override
     public boolean addUser(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
@@ -71,7 +68,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return true;
     }
 
-    //testing
     @Override
     public String sendMessageWithActivationCode(User user) {
         String subject = "Activation code";
@@ -87,7 +83,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             messageWithActivationKey.setSubject(subject);
             messageWithActivationKey.setMessage(message);
 
-            String jsonMessage = JsonConverter.objectToJson(messageWithActivationKey);
+            String jsonMessage = utilService.objectToJson(messageWithActivationKey);
 
             rabbitTemplate.convertAndSend("mail", jsonMessage);
 
@@ -96,7 +92,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         else return null;
     }
 
-    //testing
     @Override
     public boolean activateUser(String code) {
         User user = userRepo.findByActivationCode(code);
@@ -106,25 +101,21 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return true;
     }
 
-    //testing
     @Override
     public List<User> findAll() {
         return userRepo.findAll();
     }
 
-    //testing
     @Override
     public List<User> findUsersByCourseId(long id) {
         return userRepo.findUsersByCourseId(id);
     }
 
-    //testing
     @Override
     public List<User> findByLastNameAndFirstName(String lastName, String firstName) {
         return userRepo.findByLastNameAndFirstName(lastName, firstName);
     }
 
-    //testing
     @Override
     public void changeEmail(User user, String email) {
         user.setEmail(email);
@@ -135,13 +126,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         sendMessageWithActivationCode(user);
     }
 
-    //testing
     @Override
     public boolean isEmailAlreadyUse(String email) {
         return userRepo.isEmailAlreadyUse(email) > 0;
     }
 
-    //testing
+    @Override
     public List<User> getUserListFromStringWithIds(String usersId) {
         List<User> users = new ArrayList<>();
         String[] ids = usersId.replaceAll(" ", "").split(",");
@@ -152,6 +142,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return users;
     }
 
+    @Override
      public List<User> getUserListFromStringWithName(String userName) throws WrongNumberArgsException {
         String[] fullName = userName.split(" ");
         if (fullName.length != 2) {
@@ -161,60 +152,52 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
     }
 
-    //testing
+    @Override
     public void deleteUserFromCourse(Course course, User user) {
         user.getCourses().remove(course);
         userRepo.save(user);
     }
 
-    //testing
     @Override
     public User save(User user) {
         return userRepo.save(user);
     }
 
-    //testing
     @Override
     public void changePassword(User user, String newPassword) {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepo.save(user);
     }
 
-    //testing
     @Override
     public void changePhone(User user, String phone) {
         user.setPhone(phone);
         userRepo.save(user);
     }
 
-    //testing
     @Override
     public void changeFirstName(User user, String firstName) {
         user.setFirstName(firstName);
         userRepo.save(user);
     }
 
-    //testing
     @Override
     public void changeSecondName(User user, String secondName) {
         user.setSecondName(secondName);
         userRepo.save(user);
     }
 
-    //testing
     @Override
     public void changeLastName(User user, String lastName) {
         user.setLastName(lastName);
         userRepo.save(user);
     }
 
-    //testing
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username);
     }
 
-    //testing
     @Override
     public Map<User, Set<Schedule>> findUsersSchedule(Course course) {
         Map<User, Set<Schedule>> usersSchedule = new HashMap<>();
@@ -225,10 +208,43 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return usersSchedule;
     }
 
-    //testing
     @Override
     public void delete(User user) {
         scheduleService.deleteAllScheduleForUser(user);
         userRepo.delete(user);
     }
+
+    @Override
+    public Double scoreConverter(Score score) {
+        double point = 0;
+        switch (score) {
+            case AA:
+                point = 5.5;
+                break;
+            case A:
+                point = 5;
+                break;
+            case B:
+                point = 4;
+                break;
+            case C:
+                point = 3.5;
+                break;
+            case D:
+                point = 3;
+                break;
+            case F:
+                point = 2;
+                break;
+        }
+        return point;
+    }
+
+    @Override
+    public Double averageScore(List<Score> scores) {
+        double avg = 0.0;
+        for(Score score : scores) avg += scoreConverter(score);
+        return avg /= scores.size();
+    }
+
 }

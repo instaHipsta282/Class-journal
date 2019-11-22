@@ -1,5 +1,7 @@
 package com.instahipsta.webappTest.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.instahipsta.webappTest.config.CustomAuthorityDeserializer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,8 +18,8 @@ public class User implements UserDetails {
     private static final long serialVersionUID = -5146465642909731622L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
-    @SequenceGenerator( name = "userSequence", sequenceName = "user_id_seq")
+    @SequenceGenerator(name = "usr_id_seq", sequenceName = "usr_id_seq", allocationSize = 1, initialValue = 3)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usr_id_seq")
     private Long id;
 
     @NotBlank(message = "The username field cannot be empty")
@@ -31,15 +33,13 @@ public class User implements UserDetails {
     private String activationCode;
     private boolean active;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Message> messages;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "course_usr",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")}
     )
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Set<Course> courses = new HashSet<>();
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -79,11 +79,11 @@ public class User implements UserDetails {
         return activationCode == null;
     }
 
+    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
-
     public Long getId() { return id; }
 
     public void setId(Long id) {
@@ -128,14 +128,6 @@ public class User implements UserDetails {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
-    }
-
-    public Set<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
     }
 
     public String getFirstName() {

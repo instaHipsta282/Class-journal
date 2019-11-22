@@ -18,6 +18,17 @@ public interface UtilService {
 
     boolean checkNewEmail(User user, String email, Model model);
 
-    //testing
     boolean checkNewPhone(User user, String newPhone, Model model);
+
+    boolean captchaCheck(String url, Model model);
+
+    String formCaptcha(String captchaResponse);
+
+    String objectToJson(Object object);
+
+    Double percentCounter(int fullNumber, int partOfNumber);
+
+    String doubleToString(double number, int decimalPlaces);
+
+    String doubleToString(double number);
 }

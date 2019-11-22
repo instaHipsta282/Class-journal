@@ -109,7 +109,7 @@ public class ScheduleServiceTest {
         User user = userService.findUserById(3L);
         Course course = courseService.findCourseById(1L);
         scheduleService.scheduleFactory(user, course);
-        Assert.assertEquals(5, scheduleService.getScheduleByUserAndCourseId(3L, 1L).size());
+        Assert.assertEquals(18, scheduleService.getScheduleByUserAndCourseId(3L, 1L).size());
     }
 
     @Test
@@ -130,5 +130,18 @@ public class ScheduleServiceTest {
         User user = userService.findUserById(1L);
         Assert.assertEquals(11, scheduleService.getScheduleByUser(user).size());
     }
+
+    @Test
+    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"},
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void findScoreByUserIdAndCourseIdTest() {
+        User user = userService.findUserById(1L);
+        Course course = courseService.findCourseById(1L);
+        List<Score> scores = scheduleService.findScoreByUserIdAndCourseId(user, course);
+        Assert.assertEquals(5, scores.size());
+    }
+
 
 }

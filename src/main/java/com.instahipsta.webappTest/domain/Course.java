@@ -1,5 +1,9 @@
 package com.instahipsta.webappTest.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -11,21 +15,25 @@ import java.util.Set;
 
 @Entity
 @Table(name = "course",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"title", "startDate", "endDate"})
-)
-public class Course implements Serializable{
+        uniqueConstraints = @UniqueConstraint(columnNames = {"title", "startDate", "endDate"}))
+public class Course implements Serializable {
 
     private static final long serialVersionUID = -7100745683715978956L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "courseSequence")
-    @SequenceGenerator( name = "courseSequence", sequenceName = "course_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "courseSequence")
+    @SequenceGenerator(name = "courseSequence", sequenceName = "course_id_seq", allocationSize = 1)
     private Long id;
 
     private String title;
 
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate startDate;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate endDate;
 
     private int daysCount;
@@ -41,6 +49,7 @@ public class Course implements Serializable{
             joinColumns = {@JoinColumn(name = "course_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Set<User> students = new HashSet<>();
 
     @Column(columnDefinition = "VARCHAR(1000) DEFAULT 'Description for this course has not yet been added.'")
@@ -105,19 +114,33 @@ public class Course implements Serializable{
         this.students = students;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public static long getSerialVersionUID() { return serialVersionUID; }
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-    public String getImage() { return image; }
+    public String getImage() {
+        return image;
+    }
 
-    public void setImage(String image) { this.image = image; }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-    public int getStudentsLimit() { return studentsLimit; }
+    public int getStudentsLimit() {
+        return studentsLimit;
+    }
 
-    public void setStudentsLimit(int studentsLimit) { this.studentsLimit = studentsLimit; }
+    public void setStudentsLimit(int studentsLimit) {
+        this.studentsLimit = studentsLimit;
+    }
 
     @Override
     public boolean equals(Object o) {

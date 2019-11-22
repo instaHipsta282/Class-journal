@@ -31,16 +31,13 @@ public class ProfileController {
     @Autowired
     private UtilServiceImpl utilService;
 
-    //testing
     @GetMapping
     public String getProfile(@AuthenticationPrincipal User user,
                              Model model) {
         courseService.addDataToModel(user, model);
-
         return "profile";
     }
 
-    //testing
     @PostMapping("/changePassword")
     public String changePassword(@AuthenticationPrincipal User user,
                                  @RequestParam String oldPassword,
@@ -62,7 +59,6 @@ public class ProfileController {
         return "profile";
     }
 
-    //testing
     @PostMapping("/changeEmail")
     public String changeEmail(@AuthenticationPrincipal User user,
                               @RequestParam String newEmail,
@@ -83,7 +79,6 @@ public class ProfileController {
         return "profile";
     }
 
-    //testing
     @PostMapping("/changePhone")
     public String changePhone(@AuthenticationPrincipal User user,
                               @RequestParam String newPhone,
@@ -105,7 +100,6 @@ public class ProfileController {
         return "profile";
     }
 
-    //testing
     @Transactional
     @PostMapping("/changeName")
     public String changeName(@AuthenticationPrincipal User user,
@@ -122,7 +116,6 @@ public class ProfileController {
         return "profile";
     }
 
-    //testing
     @PostMapping("/addCourse")
     public String addCourse(@AuthenticationPrincipal User currentUser,
                             @RequestParam Map<String, String> form,
@@ -139,6 +132,3 @@ public class ProfileController {
         return "redirect:/profile";
     }
 }
-
-
-

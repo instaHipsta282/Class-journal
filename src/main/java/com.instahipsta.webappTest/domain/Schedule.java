@@ -1,5 +1,10 @@
 package com.instahipsta.webappTest.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -9,9 +14,11 @@ public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "scheduleSequence")
-    @SequenceGenerator( name = "scheduleSequence", sequenceName = "schedule_id_seq")
+    @SequenceGenerator( name = "scheduleSequence", sequenceName = "schedule_id_seq", allocationSize = 1)
     private Long id;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate date;
 
     @ManyToOne(targetEntity = User.class)

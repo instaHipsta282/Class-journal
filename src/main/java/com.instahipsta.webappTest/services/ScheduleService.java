@@ -2,6 +2,7 @@ package com.instahipsta.webappTest.services;
 
 import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.Schedule;
+import com.instahipsta.webappTest.domain.Score;
 import com.instahipsta.webappTest.domain.User;
 
 import java.time.LocalDate;
@@ -23,10 +24,11 @@ public interface ScheduleService {
 
     void deleteAllScheduleForCourse(long courseId);
 
-    //testing
     void scheduleFactory(User student, Course course);
 
     void deleteAllScheduleForUser(User user);
 
     Set<Schedule> getScheduleByUser(User user);
+
+    List<Score> findScoreByUserIdAndCourseId(User user, Course course);
 }

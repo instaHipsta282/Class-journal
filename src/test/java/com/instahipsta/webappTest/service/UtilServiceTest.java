@@ -2,6 +2,7 @@ package com.instahipsta.webappTest.service;
 
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
+import com.instahipsta.webappTest.impl.ScheduleServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
 import com.instahipsta.webappTest.impl.UtilServiceImpl;
 import org.junit.Assert;
@@ -31,6 +32,9 @@ public class UtilServiceTest {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private ScheduleServiceImpl scheduleService;
 
     @Test
     public void stringToLocalDate() {
@@ -127,4 +131,45 @@ public class UtilServiceTest {
         boolean isOk = utilService.checkNewPhone(user, newPhone, model);
         Assert.assertTrue(isOk);
     }
+
+    @Test
+    public void captchaCheck() throws Exception {
+        Model model = new ExtendedModelMap();
+        boolean isOk = utilService.captchaCheck("https://www.google.com/recaptcha/api/siteverify?" +
+                        "secret=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe&" +
+                        "response=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
+                model);
+        Assert.assertTrue(isOk);
+    }
+
+    @Test
+    public void captchaCheckFail() throws Exception {
+        Model model = new ExtendedModelMap();
+        boolean isOk = utilService.captchaCheck("https://www.google.com/recaptcha/api/siteverify?" +
+                        "secret=kakayato&" +
+                        "response=neudacha",
+                model);
+        Assert.assertFalse(isOk);
+        Assert.assertTrue(model.containsAttribute("captchaError"));
+    }
+
+    @Test
+    public void formCaptcha() throws Exception {
+        String resp = "udacha";
+        String answer = "https://www.google.com/recaptcha/api/siteverify?" +
+                "secret=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe&response=udacha";
+        Assert.assertEquals(answer, utilService.formCaptcha(resp));
+    }
+
+    @Test
+    public void percentCounter() {
+        Assert.assertEquals(93.33333333333334, utilService.percentCounter(60, 56), 1);
+    }
+
+    @Test
+    public void doubleToString() {
+        Assert.assertEquals("93.3", utilService.doubleToString(93.3));
+        Assert.assertEquals("93.35", utilService.doubleToString(93.3536, 2));
+    }
+
 }

@@ -1,9 +1,6 @@
 package com.instahipsta.webappTest.service;
 
-import com.instahipsta.webappTest.domain.Course;
-import com.instahipsta.webappTest.domain.Role;
-import com.instahipsta.webappTest.domain.Schedule;
-import com.instahipsta.webappTest.domain.User;
+import com.instahipsta.webappTest.domain.*;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
 import com.instahipsta.webappTest.impl.UserServiceImpl;
 import com.sun.org.apache.xpath.internal.functions.WrongNumberArgsException;
@@ -22,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.containsString;
 
 @RunWith(SpringRunner.class)
@@ -251,12 +249,29 @@ public class UserServiceTest {
     }
 
     @Test
-
     @Sql(value = { "/create-user-for-delete.sql" }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void delete() throws Exception {
         User user = userService.findUserById(3L);
         userService.delete(user);
         Assert.assertNull(userService.findUserById(3L));
     }
+
+    @Test
+    public void scoreConverterTest() throws Exception {
+        Assert.assertEquals(5.5, userService.scoreConverter(Score.AA), 0);
+        Assert.assertEquals(5, userService.scoreConverter(Score.A), 0);
+        Assert.assertEquals(4, userService.scoreConverter(Score.B), 0);
+        Assert.assertEquals(3.5, userService.scoreConverter(Score.C), 0);
+        Assert.assertEquals(3, userService.scoreConverter(Score.D), 0);
+        Assert.assertEquals(2, userService.scoreConverter(Score.F), 0);
+    }
+
+    @Test
+    public void averageScoreTest() throws Exception {
+        List<Score> scores = asList(Score.AA, Score.A, Score.AA, Score.B, Score.D);
+        double avg = userService.averageScore(scores);
+        Assert.assertEquals(4.6, avg, 0);
+    }
+
 }
 
