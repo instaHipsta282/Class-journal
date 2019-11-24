@@ -39,14 +39,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private UtilServiceImpl utilService;
 
-    @Value("${my_hostname}")
+    @Value("${my_hostname")
     private String hostname;
 
     @Override
     public User findUserById(long userId) {
         if (userRepo.findById(userId).isPresent()) {
             return userRepo.findById(userId).get();
-        }
+       }
         else return null;
     }
 

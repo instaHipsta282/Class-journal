@@ -1,5 +1,6 @@
 package com.instahipsta.webappTest.service;
 
+import com.instahipsta.webappTest.Application;
 import com.instahipsta.webappTest.domain.Course;
 import com.instahipsta.webappTest.domain.User;
 import com.instahipsta.webappTest.impl.CourseServiceImpl;
@@ -11,7 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.ExtendedModelMap;
@@ -22,8 +23,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@TestPropertySource("/application-test.properties")
+@SpringBootTest(classes = Application.class)
+@ActiveProfiles("test")
 public class CourseServiceTest {
     @Autowired
     private CourseServiceImpl courseService;
