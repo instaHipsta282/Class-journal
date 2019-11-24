@@ -61,8 +61,8 @@ public class RegistrationControllerTest {
         catch (IOException e) { e.printStackTrace(); }
     }
     @Test
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void activate() throws Exception {
         this.mockMvc.perform(get("/activate/123456"))
                 .andDo(print())
@@ -73,8 +73,8 @@ public class RegistrationControllerTest {
     }
 
     @Test
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void activateWithFalseCode() throws Exception {
         this.mockMvc.perform(get("/activate/654321"))
                 .andDo(print())

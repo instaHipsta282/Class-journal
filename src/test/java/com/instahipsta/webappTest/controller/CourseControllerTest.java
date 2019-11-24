@@ -95,7 +95,7 @@ public class CourseControllerTest {
 
     @Test
     @WithUserDetails("ADMIN")
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getCourseWithAdminAuthTest() throws Exception {
         this.mockMvc.perform(get("/courseList/1"))
@@ -108,7 +108,7 @@ public class CourseControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getCourseWithUserAuthTest() throws Exception {
         boolean isOk = this.mockMvc.perform(get("/courseList/1"))
@@ -124,7 +124,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getCourseWithoutAuthTest() throws Exception{
         this.mockMvc.perform(get("/courseList/1"))
@@ -208,7 +208,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void deleteCourseWithoutAuth() throws Exception{
         this.mockMvc.perform(get("/courseList/deleteCourse")
@@ -219,7 +219,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("USER")
     public void deleteCourseWithUserAuth() throws Exception{
@@ -231,7 +231,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("ADMIN")
     public void deleteCourseWithAdminAuthTest() throws Exception{
@@ -244,7 +244,7 @@ public class CourseControllerTest {
     }
 
     @Test(expected = NestedServletException.class)
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void changeScheduleWithoutAuthTest() throws Exception{
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
@@ -260,7 +260,7 @@ public class CourseControllerTest {
     }
 
     @Test(expected = NestedServletException.class)
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("USER")
     public void changeScheduleWithUserAuthTest() throws Exception{
@@ -277,7 +277,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("ADMIN")
     public void changeScheduleWithAdminAuthWithoutPrStatAndScoreTest() throws Exception{
@@ -294,7 +294,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("ADMIN")
     public void changeScheduleWithAdminAuthAllParamTest() throws Exception{
@@ -313,7 +313,7 @@ public class CourseControllerTest {
     }
 
     @Test(expected = NestedServletException.class)
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void addUserWithoutAuthTest() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
@@ -328,7 +328,7 @@ public class CourseControllerTest {
     }
 
     @Test(expected = NestedServletException.class)
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("USER")
     public void addUserWithUserAuthTest() throws Exception {
@@ -344,7 +344,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("ADMIN")
     public void addUserWithAdminAuthWithUserIdTest() throws Exception {
@@ -360,7 +360,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("ADMIN")
     public void addUserWithAdminAuthWithUserNameTest() throws Exception {
@@ -376,7 +376,7 @@ public class CourseControllerTest {
     }
 
     @Test(expected = NestedServletException.class)
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void deleteUserFromCourseWithoutAuthTest() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
@@ -391,7 +391,7 @@ public class CourseControllerTest {
     }
 
     @Test(expected = NestedServletException.class)
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("USER")
     public void deleteUserFromCourseWithUserAuthTest() throws Exception {
@@ -407,7 +407,7 @@ public class CourseControllerTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @WithUserDetails("ADMIN")
     public void deleteUserFromCourseWithAdminAuthTest() throws Exception {

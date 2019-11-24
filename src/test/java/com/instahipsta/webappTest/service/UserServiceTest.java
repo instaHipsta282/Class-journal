@@ -238,7 +238,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findUsersSchedule() throws Exception {
         Course course = courseService.findCourseById(1L);
@@ -249,7 +249,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @Sql(value = { "/create-user-for-delete.sql" }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = { "/create-user-before.sql" }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void delete() throws Exception {
         User user = userService.findUserById(3L);
         userService.delete(user);

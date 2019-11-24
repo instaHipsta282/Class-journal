@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -38,7 +37,6 @@ public class Course implements Serializable {
 
     private int daysCount;
 
-    @Value("${DEFAULT_STUDENTS_LIMIT}")
     private int studentsLimit = 5;
 
     private int studentsCount;

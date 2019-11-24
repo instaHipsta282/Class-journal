@@ -54,26 +54,23 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findActuallyCoursesByUserId() throws Exception {
         Set<Course> courses = courseService.findActuallyCoursesByUserId(1);
         courses.forEach(s -> System.out.println(s.getTitle()));
-        Assert.assertEquals(1, courses.size());
+        Assert.assertEquals(2, courses.size());
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findAll() throws Exception {
         Assert.assertEquals(3, courseService.findAll().size());
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findActuallyCourses() throws Exception {
         Set<Course> courses = courseService.findActuallyCourses();
@@ -81,8 +78,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findPresentCourses() throws Exception {
         Course course = courseService.findPresentCourses().iterator().next();
@@ -90,8 +86,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findPassCourses() throws Exception {
         Course course = courseService.findPassCourses().iterator().next();
@@ -99,8 +94,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findFutureCourses() throws Exception {
         Course course = courseService.findFutureCourses().iterator().next();
@@ -108,8 +102,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void actuallyCoursesWithPercent() throws Exception {
         Map<Course, String> courses = courseService.actuallyCoursesWithPercent();
@@ -118,16 +111,14 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findCourseById() throws Exception {
         Assert.assertNotNull(courseService.findCourseById(1));
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void deleteCourse() throws Exception {
         Course course = courseService.findCourseById(1);
@@ -136,8 +127,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void doesThisCourseExist() throws Exception {
         String title = "NotActually";
@@ -147,18 +137,16 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getStartDateById() throws Exception {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate = format.parse("2019-11-16");
+        Date startDate = format.parse("2019-11-19");
         Assert.assertEquals(startDate, courseService.getStartDateById(1L));
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getEndDateById() throws Exception {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -167,8 +155,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void addUserToCourse() throws Exception {
         Course course = courseService.findCourseById(1);
@@ -177,17 +164,16 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-course-controller.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void findAvailableCoursesForUser() throws Exception {
-        User user = userService.findUserById(1);
+        User user = userService.findUserById(2);
         Set<Course> courses = courseService.findAvailableCoursesForUser(user);
-        Assert.assertEquals(1, courses.size());
+        Assert.assertEquals(2, courses.size());
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql", "/create-user-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"},
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
@@ -198,7 +184,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql", "/create-user-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"},
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
@@ -255,7 +241,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void addCourseFromForm() {
         User user = userService.findUserById(2L);

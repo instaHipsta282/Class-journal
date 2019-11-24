@@ -1,7 +1,6 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-
     <#if Session?? && Session.SPRING_SECURITY_LAST_EXCEPTION??>
         <div class="alert alert-danger" role="alert">
             ${Session.SPRING_SECURITY_LAST_EXCEPTION.message}
@@ -12,7 +11,6 @@
             ${message}
         </div>
     </#if>
-
     <form action="/login" method="post">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="username">
@@ -48,5 +46,4 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button class="btn btn-primary" type="submit">Log in</button>
     </form>
-
 </@c.page>

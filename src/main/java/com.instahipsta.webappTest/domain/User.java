@@ -39,7 +39,6 @@ public class User implements UserDetails {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")}
     )
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     private Set<Course> courses = new HashSet<>();
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -53,6 +52,7 @@ public class User implements UserDetails {
     private String secondName;
     @NotBlank(message = "The phone number field cannot be empty")
     private String phone;
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'default.jpg'")
     private String photo = "default.jpg";
 
     public boolean isAdmin() {

@@ -1,0 +1,140 @@
+spring:
+  profiles: dev
+  session:
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
+  datasource:
+    url: jdbc:postgresql://db:5432/classjourn
+    username: root
+    password: root
+    initialization-mode: always
+  jpa:
+    generate-ddl: false
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  rabbitmq:
+    host: 127.0.0.1
+    username: admin
+    password: admin
+  mail:
+    host: smtp.gmail.com
+    username: loadtesting282@gmail.com
+    password: loadtesting
+    port: 587
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  freemarker:
+    expose-request-attributes: true
+upload:
+  path: D:/Users/user/IdeaProjects/WebappTest/uploads
+recaptcha:
+  secret: 6LcOVbQUAAAAACiBUb7l5_WBVDgAsogKvg4bYk5D
+my:
+  hostname: 127.0.0.1:8080
+mail:
+  debug: true
+---
+spring:
+  profiles: test
+  session:
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
+  datasource:
+    url: jdbc:postgresql://localhost:5432/classjourn_test
+    username: root
+    password: root
+    initialization-mode: always
+  jpa:
+    generate-ddl: false
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  rabbitmq:
+    host: 127.0.0.1
+    username: admin
+    password: admin
+  mail:
+    host: smtp.gmail.com
+    username: loadtesting282@gmail.com
+    password: loadtesting
+    port: 587
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  freemarker:
+    expose-request-attributes: true
+upload:
+  path: D:/Users/user/IdeaProjects/WebappTest/test-uploads
+recaptcha:
+  secret: 6LcOVbQUAAAAACiBUb7l5_WBVDgAsogKvg4bYk5D
+my:
+  hostname: 127.0.0.1:8080
+mail:
+  debug: true
+---
+spring:
+  profiles: prod
+  session:
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
+  datasource:
+    url: jdbc:postgresql://db:5432/classjourn
+    username: root
+    password: root
+    initialization-mode: always
+  jpa:
+    generate-ddl: false
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  rabbitmq:
+    host: 127.0.0.1
+    username: admin
+    password: admin
+  mail:
+    host: smtp.gmail.com
+    username: loadtesting282@gmail.com
+    password: loadtesting
+    port: 587
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  freemarker:
+    expose-request-attributes: true
+upload:
+  path: /media
+recaptcha:
+  secret: 6LcOVbQUAAAAACiBUb7l5_WBVDgAsogKvg4bYk5D
+my:
+  hostname: class-journ.top
+mail:
+  debug: false

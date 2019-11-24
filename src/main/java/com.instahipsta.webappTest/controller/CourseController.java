@@ -79,7 +79,6 @@ public class CourseController {
 
         Course course = courseService.addNewCourse(courseTitle, courseDescription, newStartDate,
                                                               newEndDate, studentsLimit, image);
-        courseService.save(course);
 
         boolean isSaveOk = courseService.save(course);
         if (!isSaveOk) model.addAttribute("courseTitleError", "This course already exists");

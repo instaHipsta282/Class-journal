@@ -75,6 +75,7 @@ public class CourseServiceImpl implements CourseService {
         Map<Course, String> map = new HashMap<>();
         Set<Course> courses = findActuallyCourses();
         courses.forEach(c -> {
+            System.out.println(c.getTitle());
             double percent = utilService.percentCounter(c.getStudentsLimit(), c.getStudentsCount());
             map.put(c, utilService.doubleToString(percent, 1));
         });
@@ -89,6 +90,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourse(Course course) {
+        scheduleService.deleteAllScheduleForCourse(course.getId());
         courseRepo.delete(course);
     }
 

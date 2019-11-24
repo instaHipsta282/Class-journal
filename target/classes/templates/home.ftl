@@ -2,9 +2,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-
     <div class="row">
-
         <div class="card pr-sm-1" style="width: 18rem;">
             <div class="card-body">
                 <ul>
@@ -14,7 +12,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="col-md-7 pl-sm-7">
             <div class="card pr-sm-1" style="width: 30rem;">
                 <div class="card-body">
@@ -27,7 +24,6 @@
                         </div>
                     </#list>
                 </div>
-
             </div>
         </div>
     </div>

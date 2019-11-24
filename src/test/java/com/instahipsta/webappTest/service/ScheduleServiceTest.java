@@ -51,7 +51,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getScheduleByUserAndCourseId() throws Exception {
@@ -60,7 +60,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getScheduleDaysByCourseId() throws Exception {
@@ -69,7 +69,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void deleteCourseScheduleForUser() throws Exception {
@@ -78,7 +78,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getScheduleByDateUserAndCourseId() throws Exception {
@@ -93,7 +93,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void deleteAllScheduleForCourse() throws Exception {
@@ -102,7 +102,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql", "/create-user-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void scheduleFactory() throws Exception {
@@ -113,7 +113,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql", "/create-user-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void deleteAllScheduleForUser() throws Exception {
@@ -123,7 +123,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql", "/create-user-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void getScheduleByUser() throws Exception {
@@ -132,7 +132,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Sql(value = {"/create-courses-before-schedule-service.sql", "/create-user-before-schedule-service.sql"},
+    @Sql(value = {"/create-course-before.sql", "/create-user-before.sql"},
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql", "/delete-user-after.sql"},
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)

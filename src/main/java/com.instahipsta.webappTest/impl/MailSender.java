@@ -1,4 +1,4 @@
-package com.instahipsta.webappTest;
+package com.instahipsta.webappTest.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;

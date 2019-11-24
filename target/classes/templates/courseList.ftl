@@ -2,46 +2,43 @@
 <#include "parts/security.ftl">
 
 <@c.page>
-
     <table class="table">
         <thead class="badge-primary badge-lg badge-block">
-        <tr>
-            <th scope="col">Course ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Begin date</th>
-            <th scope="col">End date</th>
-            <th scope="col">Days count</th>
-            <th scope="col">Students count</th>
-            <th scope="col">Students limit</th>
-            <#if isAdmin>
-                <th scope="col"></th>
-            </#if>
-        </tr>
-        </thead>
-        <tbody>
-        <#list courses as course>
             <tr>
-                <td>${course.id}</td>
-                <td>
-                    <a href="/courseList/${course.id}">
-                        ${course.getTitle()}
-                    </a>
-                </td>
-                <td>${course.getStartDate()}</td>
-                <td>${course.getEndDate()}</td>
-                <td>${course.getDaysCount()}</td>
-                <td>${course.getStudentsCount()}</td>
-                <td>${course.getStudentsLimit()}</td>
+                <th scope="col">Course ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Begin date</th>
+                <th scope="col">End date</th>
+                <th scope="col">Days count</th>
+                <th scope="col">Students count</th>
+                <th scope="col">Students limit</th>
                 <#if isAdmin>
-                    <td>
-                        <form method="get" action="/courseList/deleteCourse" class="form-inline">
-                            <input type="hidden" name="courseId" value="${course.getId()}">
-                            <button class="badge badge-danger" type="submit">&times;</button>
-                        </form>
-                    </td>
+                    <th scope="col"></th>
                 </#if>
             </tr>
-        </#list>
+        </thead>
+        <tbody>
+            <#list courses as course>
+                <tr>
+                    <td>${course.id}</td>
+                    <td>
+                        <a href="/courseList/${course.id}">${course.getTitle()}</a>
+                    </td>
+                    <td>${course.getStartDate()}</td>
+                    <td>${course.getEndDate()}</td>
+                    <td>${course.getDaysCount()}</td>
+                    <td>${course.getStudentsCount()}</td>
+                    <td>${course.getStudentsLimit()}</td>
+                    <#if isAdmin>
+                        <td>
+                            <form method="get" action="/courseList/deleteCourse" class="form-inline">
+                                <input type="hidden" name="courseId" value="${course.getId()}">
+                                <button class="badge badge-danger" type="submit">&times;</button>
+                            </form>
+                        </td>
+                    </#if>
+                </tr>
+            </#list>
         </tbody>
     </table>
     <#if isAdmin>
@@ -55,7 +52,7 @@
             <div class="card card-body">
                 <div class="collapse <#if courseTitleError??>show</#if>" id="addNewCourse">
                     <div class="form-group mt-3">
-                        <form method="post" action="/courseList/addNewCourse" <#-- link -->
+                        <form method="post" action="/courseList/addNewCourse"
                               enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label for="courseTitle" class="col-sm-5 col-form-label">

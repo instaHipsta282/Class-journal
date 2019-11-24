@@ -1,7 +1,7 @@
 package com.instahipsta.webappTest.messaging.listeners;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.instahipsta.webappTest.MailSender;
+import com.instahipsta.webappTest.impl.MailSender;
 import com.instahipsta.webappTest.messaging.tasks.MessageWithActivationKey;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -18,7 +18,7 @@ public class RabbitMqListener {
     private MessageWithActivationKey messageWithActivationKey;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private ObjectMapper myObjectMapper;
 
     @Autowired
     MailSender mailSender;
@@ -27,7 +27,7 @@ public class RabbitMqListener {
     public void mailWorker(String message) {
 
         try {
-            messageWithActivationKey = objectMapper.readValue(message, MessageWithActivationKey.class);
+            messageWithActivationKey = myObjectMapper.readValue(message, MessageWithActivationKey.class);
             mailSender.send(messageWithActivationKey.getEmailFrom(),
                     messageWithActivationKey.getEmailTo(),
                     messageWithActivationKey.getSubject(),

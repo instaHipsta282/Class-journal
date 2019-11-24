@@ -9,7 +9,7 @@
             <div class="card-deck">
                 <div class="card">
                     <#if currentUser.photo??>
-                        <img src="/img/${currentUser.photo}" class="card-img-top">
+                        <img src="/img/${currentUser.photo}" class="card-img-top" alt="">
                     </#if>
                     <div class="m-2">
                         <span>${currentUser.lastName}</span>
@@ -83,11 +83,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">New
-                                                                password: </label>
+                                                            <label class="col-sm-5 col-form-label"
+                                                                   for="newPassword">New password:</label>
                                                             <div class="col-sm-7">
                                                                 <input type="password" name="newPassword"
-                                                                       class="form-control
+                                                                       id="newPassword" class="form-control
                                                                        ${(newPasswordError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter new password"/>
                                                                 <#if newPasswordError??>
@@ -98,11 +98,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Re-enter new
-                                                                password: </label>
+                                                            <label class="col-sm-5 col-form-label"
+                                                                   for="newPasswordRe">Re-enter new password:</label>
                                                             <div class="col-sm-7">
                                                                 <input type="password" name="newPasswordRe"
-                                                                       class="form-control ${(newPasswordReError??)?string('is-invalid', '')}"
+                                                                       id="newPasswordRe"
+                                                                       class="form-control
+                                                                       ${(newPasswordReError??)?string('is-invalid', '')}"
                                                                        placeholder="Re-enter new password"/>
                                                                 <#if newPasswordReError??>
                                                                     <div class="invalid-feedback">
@@ -143,11 +145,12 @@
                                                     <form method="post" action="/profile/changeEmail"
                                                           enctype="multipart/form-data">
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">New
-                                                                email: </label>
+                                                            <label class="col-sm-5 col-form-label" for="newEmail">
+                                                                New email: </label>
                                                             <div class="col-sm-7">
-                                                                <input type="email" name="newEmail"
-                                                                       class="form-control ${(newEmailError??)?string('is-invalid', '')}"
+                                                                <input type="email" name="newEmail" id="newEmail"
+                                                                       class="form-control
+                                                                       ${(newEmailError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter new email"/>
                                                                 <#if newEmailError??>
                                                                     <div class="invalid-feedback">
@@ -157,10 +160,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Password:</label>
+                                                            <label class="col-sm-5 col-form-label" for="password">
+                                                                Password:</label>
                                                             <div class="col-sm-7">
-                                                                <input type="password" name="password"
-                                                                       class="form-control ${(passwordError??)?string('is-invalid', '')}"
+                                                                <input type="password" name="password" id="password"
+                                                                       class="form-control
+                                                                       ${(passwordError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter your password"/>
                                                                 <#if passwordError??>
                                                                     <div class="invalid-feedback">
@@ -202,11 +207,12 @@
                                                     <form method="post" action="/profile/changePhone"
                                                           enctype="multipart/form-data">
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">New
-                                                                phone number: </label>
+                                                            <label class="col-sm-5 col-form-label" for="newPhone">
+                                                                New phone number: </label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" name="newPhone"
-                                                                       class="form-control ${(newPhoneError??)?string('is-invalid', '')}"
+                                                                <input type="text" name="newPhone" id="newPhone"
+                                                                       class="form-control
+                                                                       ${(newPhoneError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter new phone number"/>
                                                                 <#if newPhoneError??>
                                                                     <div class="invalid-feedback">
@@ -216,9 +222,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Password:</label>
+                                                            <label class="col-sm-5 col-form-label" for="password2">
+                                                                Password:</label>
                                                             <div class="col-sm-7">
-                                                                <input type="password" name="password"
+                                                                <input type="password" name="password" id="password2"
                                                                        class="form-control ${(passwordError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter your password"/>
                                                                 <#if passwordError??>
@@ -228,10 +235,8 @@
                                                                 </#if>
                                                             </div>
                                                         </div>
-                                                        <input type="hidden" name="_csrf"
-                                                               value="${_csrf.token}"/>
-                                                        <button class="btn btn-primary" type="submit">Submit
-                                                        </button>
+                                                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                                                        <button class="btn btn-primary" type="submit">Submit</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -253,17 +258,18 @@
                                                     </a>
                                                 </h4>
                                             </div>
-
                                             <div class="collapse <#if someNameError??>show</#if>"
                                                  id="collapseFive">
                                                 <div class="form-group mt-3">
                                                     <form method="post" action="profile/changeName"
                                                           enctype="multipart/form-data">
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">First name:</label>
+                                                            <label class="col-sm-5 col-form-label" for="firstName">
+                                                                First name:</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" name="firstName"
-                                                                       class="form-control ${(firstNameError??)?string('is-invalid', '')}"
+                                                                <input type="text" name="firstName" id="firstName"
+                                                                       class="form-control
+                                                                       ${(firstNameError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter your first name"/>
                                                                 <#if firstNameError??>
                                                                     <div class="invalid-feedback">
@@ -273,10 +279,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Second name:</label>
+                                                            <label class="col-sm-5 col-form-label" for="secondName">
+                                                                Second name:</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" name="secondName"
-                                                                       class="form-control ${(secondNameError??)?string('is-invalid', '')}"
+                                                                <input type="text" name="secondName" id="secondName"
+                                                                       class="form-control
+                                                                       ${(secondNameError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter your second name"/>
                                                                 <#if secondNameError??>
                                                                     <div class="invalid-feedback">
@@ -286,10 +294,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Last name:</label>
+                                                            <label class="col-sm-5 col-form-label" for="lastName">
+                                                                Last name:</label>
                                                             <div class="col-sm-7">
-                                                                <input type="text" name="lastName"
-                                                                       class="form-control ${(lastNameError??)?string('is-invalid', '')}"
+                                                                <input type="text" name="lastName" id="lastName"
+                                                                       class="form-control
+                                                                       ${(lastNameError??)?string('is-invalid', '')}"
                                                                        placeholder="Enter your last name"/>
                                                                 <#if lastNameError??>
                                                                     <div class="invalid-feedback">
@@ -298,23 +308,8 @@
                                                                 </#if>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-5 col-form-label">Password:</label>
-                                                            <div class="col-sm-7">
-                                                                <input type="password" name="password"
-                                                                       class="form-control ${(passwordError??)?string('is-invalid', '')}"
-                                                                       placeholder="Enter your password"/>
-                                                                <#if passwordError??>
-                                                                    <div class="invalid-feedback">
-                                                                        ${passwordError}
-                                                                    </div>
-                                                                </#if>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" name="_csrf"
-                                                               value="${_csrf.token}"/>
-                                                        <button class="btn btn-primary" type="submit">Submit
-                                                        </button>
+                                                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                                                        <button class="btn btn-primary" type="submit">Submit</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -331,7 +326,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingSix">
                         <h4 class="panel-title">
-
                             <a class="list-group-item list-group-item-action active" data-toggle="collapse"
                                href="#collapseSix" aria-expanded="false"
                                aria-controls="collapseSix">
@@ -356,7 +350,9 @@
                                             <#list userCourses as userCourse>
                                                 <tr>
                                                     <td>
-                                                        <a href="/courseList/${userCourse.title}">${userCourse.title}</a>
+                                                        <a href="/courseList/${userCourse.title}">
+                                                            ${userCourse.title}
+                                                        </a>
                                                     </td>
                                                     <td>${userCourse.startDate}</td>
                                                     <td>${userCourse.endDate}</td>
@@ -364,7 +360,6 @@
                                             </#list>
                                             </tbody>
                                         </table>
-
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -378,11 +373,10 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text mr-2">
-                                                                        <input class="mr-2" type="checkbox"
-                                                                               name="${course.id}">
-                                                                        <div>
-                                                                            ${course.title}
-                                                                        </div>
+                                                                        <label for="course"></label>
+                                                                        <input class="mr-2" type="checkbox" id="course"
+                                                                                   name="${course.id}"/>
+                                                                        <div>${course.title}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>

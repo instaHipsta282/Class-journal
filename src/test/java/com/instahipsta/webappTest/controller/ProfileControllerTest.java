@@ -85,7 +85,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void changePasswordWithAuthTest() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         this.mockMvc.perform(multipart("/profile/changePassword")
@@ -125,7 +125,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("ADMIN")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void changePasswordWithAuthIncorrectRePasswordTest() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         boolean isOk = this.mockMvc.perform(multipart("/profile/changePassword")
@@ -147,7 +147,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("ADMIN")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void changePasswordWithAuthSamePasswordsTest() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         boolean isOk = this.mockMvc.perform(multipart("/profile/changePassword")
@@ -182,7 +182,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void changeEmailWithAuthTest() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         this.mockMvc.perform(multipart("/profile/changeEmail")
@@ -265,7 +265,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void changePhoneWithAuthTest() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         this.mockMvc.perform(multipart("/profile/changePhone")
@@ -282,7 +282,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void changeOnlyFirstNameWithAut() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         this.mockMvc.perform(multipart("/profile/changeName")
@@ -298,7 +298,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void changeOnlySecondNameWithAut() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         this.mockMvc.perform(multipart("/profile/changeName")
@@ -314,7 +314,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/update-user-after-profile-controller.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(value = {"/update-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void changeNamesWithAut() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         this.mockMvc.perform(multipart("/profile/changeName")
@@ -361,7 +361,7 @@ public class ProfileControllerTest {
 
     @Test
     @WithUserDetails("USER")
-    @Sql(value = {"/create-courses-before-schedule-service.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/create-course-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-course-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void addCourseWithAuth() throws Exception {
         MultiValueMap<String, String> courses = new LinkedMultiValueMap<>();
