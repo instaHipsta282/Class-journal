@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: test
+    active: prod
 ---
 spring:
   profiles: dev
@@ -9,7 +9,7 @@ spring:
       initialize-schema: always
       table-name: SPRING_SESSION
   datasource:
-    url: jdbc:postgresql://db:5432/classjourn
+    url: jdbc:postgresql://127.0.0.1:5432/classjourn
     username: root
     password: root
     initialization-mode: always
@@ -101,7 +101,7 @@ spring:
       initialize-schema: always
       table-name: SPRING_SESSION
   datasource:
-    url: jdbc:postgresql://db:5432/classjourn
+    url: jdbc:postgresql://postgres:5432/classjourn
     username: root
     password: root
     initialization-mode: always
@@ -115,7 +115,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
   rabbitmq:
-    host: 127.0.0.1
+    host: rabbitmq
     username: admin
     password: admin
   mail:

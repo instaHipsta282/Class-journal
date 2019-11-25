@@ -1,28 +1,154 @@
 -------------------------------------------------------------------------------
 Test set: com.instahipsta.webappTest.service.UserServiceTest
 -------------------------------------------------------------------------------
-Tests run: 30, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 2.037 s <<< FAILURE! - in com.instahipsta.webappTest.service.UserServiceTest
-isEmailAlreadyUse(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.008 s  <<< FAILURE!
-java.lang.AssertionError
-	at com.instahipsta.webappTest.service.UserServiceTest.isEmailAlreadyUse(UserServiceTest.java:82)
+Tests run: 30, Failures: 0, Errors: 30, Skipped: 0, Time elapsed: 0.481 s <<< FAILURE! - in com.instahipsta.webappTest.service.UserServiceTest
+isEmailAlreadyUse(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
 
-addUser(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.047 s  <<< ERROR!
-org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [usr_pkey]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at com.instahipsta.webappTest.service.UserServiceTest.addUser(UserServiceTest.java:215)
-Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at com.instahipsta.webappTest.service.UserServiceTest.addUser(UserServiceTest.java:215)
-Caused by: org.postgresql.util.PSQLException: 
-ERROR: duplicate key value violates unique constraint "usr_pkey"
-  Подробности: Key (id)=(2) already exists.
-	at com.instahipsta.webappTest.service.UserServiceTest.addUser(UserServiceTest.java:215)
+changeLastName(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
 
-save(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.013 s  <<< ERROR!
-org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [usr_pkey]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at com.instahipsta.webappTest.service.UserServiceTest.save(UserServiceTest.java:127)
-Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at com.instahipsta.webappTest.service.UserServiceTest.save(UserServiceTest.java:127)
-Caused by: org.postgresql.util.PSQLException: 
-ERROR: duplicate key value violates unique constraint "usr_pkey"
-  Подробности: Key (id)=(2) already exists.
-	at com.instahipsta.webappTest.service.UserServiceTest.save(UserServiceTest.java:127)
+changeEmail(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+changePhone(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+delete(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+activateUser(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+addUser(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+findAll(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+getUserListFromStringWithIdsDoesntFind(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+getUserListFromStringWithNameThreeArg(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+findByLastNameAndFirstNameDoesntFind(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+loadUserByUsername(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+changeFirstName(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+findUserById(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+getUserListFromStringWithNameOneArg(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+getUserListFromStringWithIds(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+save(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+sendMessageWithActivationCode(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+findUsersByCourseId(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+findUsersSchedule(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+findUserByIdDoesntFind(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+getUserListFromStringWithIdsWrongArg(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+scoreConverterTest(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+changeSecondName(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+isEmailAlreadyUseDoesntFind(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+changePassword(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+findByLastNameAndFirstName(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+getUserListFromStringWithName(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+averageScoreTest(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+deleteUserFromCourse(com.instahipsta.webappTest.service.UserServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
 

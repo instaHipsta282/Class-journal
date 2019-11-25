@@ -2,23 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8a87a53-fe46-49c6-95fb-477c1c3728cd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UtilServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.instahipsta.webappTest/impl/UtilServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/CourseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/instahipsta/webappTest/service/CourseServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/JsonConverter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/MailSender.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/domain/Course.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/messaging/listeners/RabbitMqListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/messaging/listeners/RabbitMqListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/application-test.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/CourseServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/instahipsta/webappTest/Service/CourseServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/create-user-for-delete.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WebappTest-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/WebappTest-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/WebappTest-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/WebappTest-1.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UtilServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/instahipsta/webappTest/impl/UtilServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.CourseControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.CourseControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.HomeControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.HomeControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.LoginControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.LoginControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.ProfileControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.ProfileControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.RegistrationControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.controller.RegistrationControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.CourseServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.CourseServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.FileServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.FileServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.ScheduleServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.ScheduleServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.UserServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.UserServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.UtilServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.instahipsta.webappTest.service.UtilServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.CourseControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.CourseControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.HomeControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.HomeControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.LoginControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.LoginControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.ProfileControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.ProfileControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.RegistrationControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.controller.RegistrationControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.CourseServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.CourseServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.FileServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.FileServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.ScheduleServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.ScheduleServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.UserServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.UserServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.UtilServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.instahipsta.webappTest.service.UtilServiceTest.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +109,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test-uploads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Dockerfile" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -134,7 +146,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CourseServiceTest">
+  <component name="RunManager" selected="Docker.Docker">
     <configuration name="All in WebappTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebappTest" />
       <option name="PACKAGE_NAME" value="" />
@@ -174,7 +186,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CourseServiceTest.actuallyCoursesWithPercent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CourseServiceTest.addDataToModel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="WebappTest" />
       <extension name="coverage">
         <pattern>
@@ -184,7 +196,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.instahipsta.webappTest.service" />
       <option name="MAIN_CLASS_NAME" value="com.instahipsta.webappTest.service.CourseServiceTest" />
-      <option name="METHOD_NAME" value="actuallyCoursesWithPercent" />
+      <option name="METHOD_NAME" value="addDataToModel" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -213,25 +225,58 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Docker" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="buildCliOptions" value="" />
+          <option name="command" value="" />
+          <option name="containerName" value="" />
+          <option name="entrypoint" value="" />
+          <option name="imageTag" value="" />
+          <option name="commandLineOptions" value="" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="JUnit.All in WebappTest" />
-      <item itemvalue="Spring Boot.Application" />
       <item itemvalue="JUnit.CourseServiceTest" />
-      <item itemvalue="JUnit.CourseServiceTest.actuallyCoursesWithPercent" />
       <item itemvalue="JUnit.CourseControllerTest.deleteUserFromCourseWithAdminAuthTest" />
       <item itemvalue="JUnit.UserServiceTest.delete" />
+      <item itemvalue="JUnit.CourseServiceTest.addDataToModel" />
+      <item itemvalue="Spring Boot.Application" />
+      <item itemvalue="Docker.Docker" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CourseServiceTest.addDataToModel" />
         <item itemvalue="JUnit.CourseServiceTest" />
         <item itemvalue="JUnit.UserServiceTest.delete" />
         <item itemvalue="JUnit.All in WebappTest" />
         <item itemvalue="JUnit.CourseControllerTest.deleteUserFromCourseWithAdminAuthTest" />
-        <item itemvalue="JUnit.CourseServiceTest.actuallyCoursesWithPercent" />
       </list>
     </recent_temporary>
   </component>
   <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@3f294589" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@3f294589" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@6f0c7f3d" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
     <option name="showServicesTree" value="false" />
   </component>
   <component name="SvnConfiguration">
@@ -304,7 +349,8 @@
       <workItem from="1574097567708" duration="37318000" />
       <workItem from="1574165836777" duration="34092000" />
       <workItem from="1574413285980" duration="31732000" />
-      <workItem from="1574499577435" duration="7885000" />
+      <workItem from="1574499577435" duration="23023000" />
+      <workItem from="1574709332774" duration="5643000" />
     </task>
     <servers />
   </component>

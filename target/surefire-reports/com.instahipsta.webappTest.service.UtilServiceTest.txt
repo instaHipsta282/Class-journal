@@ -1,8 +1,79 @@
 -------------------------------------------------------------------------------
 Test set: com.instahipsta.webappTest.service.UtilServiceTest
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.805 s <<< FAILURE! - in com.instahipsta.webappTest.service.UtilServiceTest
-percentCounter(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< FAILURE!
-java.lang.AssertionError: expected:<93.3> but was:<93.33333333333334>
-	at com.instahipsta.webappTest.service.UtilServiceTest.percentCounter(UtilServiceTest.java:166)
+Tests run: 15, Failures: 0, Errors: 15, Skipped: 0, Time elapsed: 0.319 s <<< FAILURE! - in com.instahipsta.webappTest.service.UtilServiceTest
+stringToLocalDate(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+percentCounter(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+captchaCheckFail(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+captchaCheck(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkEmail(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkPhone(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkEmailSame(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+formCaptcha(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkNewPasswordIdentity(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkPhoneSame(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkNewPasswordReFail(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkNewPassword(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+doubleToString(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkNormalPassword(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+checkIdentityPassword(com.instahipsta.webappTest.service.UtilServiceTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
 

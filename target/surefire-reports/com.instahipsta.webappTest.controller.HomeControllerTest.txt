@@ -1,4 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: com.instahipsta.webappTest.controller.HomeControllerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.14 s - in com.instahipsta.webappTest.controller.HomeControllerTest
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.053 s <<< FAILURE! - in com.instahipsta.webappTest.controller.HomeControllerTest
+getHomePageWithAuthTest(com.instahipsta.webappTest.controller.HomeControllerTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+
+getHomePageWithoutAuthTest(com.instahipsta.webappTest.controller.HomeControllerTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to add PropertySource to Environment
+Caused by: java.io.FileNotFoundException: class path resource [application-test.properties] cannot be opened because it does not exist
+

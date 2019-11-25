@@ -27,6 +27,7 @@ public class UtilServiceImpl implements UtilService {
 
     private static final String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
 
+
     @Value("${recaptcha.secret}")
     private String secret;
 
@@ -99,7 +100,8 @@ public class UtilServiceImpl implements UtilService {
 
     @Override
     public boolean captchaCheck(String url, Model model) {
-        CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
+        CaptchaResponseDto response = restTemplate
+                .postForObject(formCaptcha(url), Collections.emptyList(), CaptchaResponseDto.class);
         if (response != null && !response.isSuccess()) {
             model.addAttribute("captchaError", "Fill captcha");
             return false;

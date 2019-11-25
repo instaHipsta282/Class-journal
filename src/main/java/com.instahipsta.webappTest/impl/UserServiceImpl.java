@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private UtilServiceImpl utilService;
 
-    @Value("${my_hostname")
+    @Value("${my_hostname}")
     private String hostname;
 
     @Override
